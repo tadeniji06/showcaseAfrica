@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 	title: "Showcase Africa Magazine | African Media",
 	description: "A magazine showcasing the best of Africa",
 	icons: {
-		icon: "/logo.png",
+		icon: "/icon.jpg",
 	},
 };
 
