@@ -21,7 +21,7 @@ const Header = () => {
 	return (
 		<header className='sticky top-0 z-50 bg-primary-red border-b border-gray-200 shadow-md'>
 			<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-				<nav className='flex items-center justify-between md:h-[120px] h-auto'>
+				<nav className='flex items-center justify-between md:h-[120px] h-16'>
 					{/* Logo/Brand */}
 					<Link href={"/"} className=''>
 						<Image
