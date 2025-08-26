@@ -1,6 +1,6 @@
 const page = () => {
   return (
-    <div>Categories</div>
+    <div>Post Slug</div>
   )
 }
 export default page

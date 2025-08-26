@@ -1,3 +1,12 @@
 import logo from "./logo.png";
-
-export { logo };
+import hero from "./hero.png";
+import bot from "./bot.jpg";
+import scape from "./scape.jpg";
+import dro from "./drogba.png";
+import mag from "./magazine.png";
+import i1 from "./i1.png";
+import i2 from "./i2.png";
+import i3 from "./i3.png";
+import i4 from "./i4.png";
+ import i5 from "./i5.png";
+export { logo, hero, bot, scape, dro, mag, i1, i2, i3,i4, i5 };

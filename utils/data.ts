@@ -12,9 +12,10 @@ export const headerLinks = [
 		link: "/podcasts",
 	},
 	{
-		title: "Business",
-		link: "/business",
+		title: "Articles",
+		link: "/posts",
 	},
+
 	{
 		title: "About",
 		link: "/about",
@@ -24,23 +25,23 @@ export const headerLinks = [
 export const categories = [
 	{
 		title: "Business & Economy",
-		link: "/categories/business",
+		link: "/",
 	},
 	{
 		title: "Travel",
-		link: "/categories/travel",
+		link: "/",
 	},
 	{
 		title: "Lifestyle",
-		link: "/categories/lifestyle",
+		link: "/",
 	},
 	{
 		title: "Politics",
-		link: "/categories/politics",
+		link: "/",
 	},
 	{
 		title: "Sport",
-		link: "/categories/sports",
+		link: "/",
 	},
 ];
 

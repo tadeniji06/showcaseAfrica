@@ -15,11 +15,11 @@ body {
 	height: 8px;
 }
 ::-webkit-scrollbar-thumb {
-	background-color: #ff5100;
+	background-color: #990100;
 	border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-	background-color: #ff5100;
+	background-color: #990100;
 }
 ::-webkit-scrollbar-track {
 	background-color: #f1f1f1;
@@ -29,5 +29,5 @@ body {
 /* For firefox */
 * {
 	scrollbar-width: thin;
-	scrollbar-color: #ff5100 #f1f1f1;
+	scrollbar-color: #990100 #f1f1f1;
 }
