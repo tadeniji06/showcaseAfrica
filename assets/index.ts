@@ -8,5 +8,21 @@ import i1 from "./i1.png";
 import i2 from "./i2.png";
 import i3 from "./i3.png";
 import i4 from "./i4.png";
- import i5 from "./i5.png";
-export { logo, hero, bot, scape, dro, mag, i1, i2, i3,i4, i5 };
+import i5 from "./i5.png";
+import p1 from "./podcast 1.png";
+import p2 from "./podcast 2.png";
+export {
+	logo,
+	hero,
+	bot,
+	scape,
+	dro,
+	mag,
+	i1,
+	i2,
+	i3,
+	i4,
+	i5,
+	p1,
+	p2,
+};

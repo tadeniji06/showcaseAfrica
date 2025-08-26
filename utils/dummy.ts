@@ -72,3 +72,27 @@ export const magazines = [
 		price: "$5.99",
 	},
 ];
+
+import { p1, p2 } from "@/assets";
+export const podcasts	= [
+	{
+		image: p1,
+		title: "Podcast Episode 1",
+		description: "Description for podcast episode 1",
+	},
+	{
+		image: p2,
+		title: "Podcast Episode 2",
+		description: "Description for podcast episode 2",
+	},
+	{
+		image: p1,
+		title: "Podcast Episode 3",
+		description: "Description for podcast episode 3",
+	},
+	{
+		image: p2,
+		title: "Podcast Episode 4",
+		description: "Description for podcast episode 4",
+	},	
+]
