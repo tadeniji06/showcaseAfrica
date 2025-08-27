@@ -4,15 +4,16 @@ import PostClient from "./PostClient";
 import type { Metadata } from "next";
 
 interface Props {
-	params: {
+	params: Promise<{
 		slug: string;
-	};
+	}>;
 }
 
 export async function generateMetadata({
 	params,
 }: Props): Promise<Metadata> {
-	const post = await getBlogPost(params.slug);
+	const { slug } = await params;
+	const post = await getBlogPost(slug);
 
 	if (!post) {
 		return {
@@ -121,7 +122,8 @@ export async function generateMetadata({
 }
 
 const page = async ({ params }: Props) => {
-	const post = await getBlogPost(params.slug);
+	const { slug } = await params;
+	const post = await getBlogPost(slug);
 
 	if (!post) {
 		notFound();

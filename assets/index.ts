@@ -11,6 +11,7 @@ import i4 from "./i4.png";
 import i5 from "./i5.png";
 import p1 from "./podcast 1.png";
 import p2 from "./podcast 2.png";
+import pod from "./pod.jpg";
 export {
 	logo,
 	hero,
@@ -25,4 +26,5 @@ export {
 	i5,
 	p1,
 	p2,
+	pod,
 };

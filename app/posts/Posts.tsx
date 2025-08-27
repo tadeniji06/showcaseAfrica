@@ -171,7 +171,7 @@ const Posts = () => {
 				initial={{ opacity: 0, y: -20 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 0.8 }}
-				className='bg-gradient-to-br from-primary-red via-red-600 to-red-800 text-white py-20'
+				className='bg-gradient-to-br from-gray-700 via-primary-red to-gray-700 text-white py-20'
 			>
 				<div className='container mx-auto px-6 lg:px-12'>
 					<div className='max-w-4xl mx-auto text-center'>
@@ -205,7 +205,7 @@ const Posts = () => {
 								placeholder='Search posts...'
 								value={searchTerm}
 								onChange={(e) => setSearchTerm(e.target.value)}
-								className='w-full px-4 py-3 pl-12 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-white'
+								className='w-full px-4 py-3 pl-12 rounded-lg text-white border-white border-2 focus:outline-none focus:ring-2 focus:ring-white'
 							/>
 							<Icon
 								icon='lucide:search'
