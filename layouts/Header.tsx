@@ -25,7 +25,7 @@ const Header = () => {
 					{/* Logo/Brand */}
 					<Link href={"/"} className=''>
 						<Image
-							className='md:h-[220px] md:w-[200px] h-[180px] w-[150px]'
+							className='md:h-[120px] md:w-[200px] h-[80px] w-[150px]'
 							width={150}
 							alt='logo'
 							src={logo}
