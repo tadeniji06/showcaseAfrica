@@ -4,14 +4,6 @@ export const headerLinks = [
 		link: "/",
 	},
 	{
-		title: "Magazines",
-		link: "/magazines",
-	},
-	{
-		title: "Vodcasts",
-		link: "/podcasts",
-	},
-	{
 		title: "Business",
 		link: "/posts",
 		dropdownItems: [
@@ -26,6 +18,14 @@ export const headerLinks = [
 			{ title: "Art", link: "/posts" },
 			{ title: "Music", link: "/posts" },
 		],
+	},
+	{
+		title: "Magazines",
+		link: "/magazines",
+	},
+	{
+		title: "Vodcasts",
+		link: "/podcasts",
 	},
 
 	{

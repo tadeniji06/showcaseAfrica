@@ -187,7 +187,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
 			</div>
 
 			{/* Bottom Brand Bar */}
-			<div className='bg-gradient-to-r from-[#990100] to-[#ce3a3a] px-4 py-3 sm:px-6 sm:py-4 lg:px-8'>
+			{/* <div className='bg-gradient-to-r from-[#990100] to-[#ce3a3a] px-4 py-3 sm:px-6 sm:py-4 lg:px-8'>
 				<div className='flex items-center justify-between text-white text-sm lg:text-base'>
 					<div className='flex items-center gap-2'>
 						<Icon
@@ -203,7 +203,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
 						<span className='sm:hidden'>African Excellence</span>
 					</div>
 				</div>
-			</div>
+			</div> */}
 		</section>
 	);
 };

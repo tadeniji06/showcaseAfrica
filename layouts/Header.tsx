@@ -5,28 +5,73 @@ import { headerLinks } from "@/utils/data";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const Header = () => {
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-	const [openDropdown, setOpenDropdown] = useState(null); // controls both desktop & mobile
+	const [openDropdown, setOpenDropdown] = useState(null); // currently open dropdown title or null
+	const headerRef = useRef(null);
 
-	const toggleMobileMenu = () => {
-		setIsMobileMenuOpen(!isMobileMenuOpen);
-		if (!isMobileMenuOpen) setOpenDropdown(null); // reset dropdown when closing mobile
-	};
-
-	const toggleDropdown = (title: any) => {
-		setOpenDropdown(openDropdown === title ? null : title);
-	};
+	// toggle mobile menu (fix: properly clear dropdown only when closing mobile menu)
+	const toggleMobileMenu = () =>
+		setIsMobileMenuOpen((prev) => {
+			const next = !prev;
+			if (!next) setOpenDropdown(null); // closing -> clear any open dropdown
+			return next;
+		});
 
 	const closeMobileMenu = () => {
 		setIsMobileMenuOpen(false);
 		setOpenDropdown(null);
 	};
 
+	const toggleDropdown = (title) => {
+		setOpenDropdown((prev) => (prev === title ? null : title));
+	};
+
+	// Click-outside -> close menus
+	useEffect(() => {
+		function handleDocClick(e) {
+			if (!headerRef.current) return;
+			if (!headerRef.current.contains(e.target)) {
+				setOpenDropdown(null);
+				setIsMobileMenuOpen(false);
+			}
+		}
+
+		function handleKey(e) {
+			if (e.key === "Escape") {
+				setOpenDropdown(null);
+				setIsMobileMenuOpen(false);
+			}
+		}
+
+		document.addEventListener("mousedown", handleDocClick);
+		document.addEventListener("touchstart", handleDocClick); // for mobile taps
+		document.addEventListener("keydown", handleKey);
+		return () => {
+			document.removeEventListener("mousedown", handleDocClick);
+			document.removeEventListener("touchstart", handleDocClick);
+			document.removeEventListener("keydown", handleKey);
+		};
+	}, []);
+
+	// If user resizes to desktop, ensure mobile menu is closed
+	useEffect(() => {
+		function onResize() {
+			if (window.innerWidth >= 1024) {
+				setIsMobileMenuOpen(false);
+			}
+		}
+		window.addEventListener("resize", onResize);
+		return () => window.removeEventListener("resize", onResize);
+	}, []);
+
 	return (
-		<header className='sticky top-0 z-50 bg-primary-red border-b border-gray-200 shadow-md'>
+		<header
+			ref={headerRef}
+			className='sticky top-0 z-50 bg-primary-red border-b border-gray-200 shadow-md'
+		>
 			<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
 				<nav className='flex items-center justify-between md:h-[120px] h-24'>
 					{/* Logo/Brand */}
@@ -46,19 +91,35 @@ const Header = () => {
 								key={link.title}
 								className='relative flex items-center'
 							>
-								<Link
-									href={link.link}
-									className='text-white hover:text-gray-300 font-medium transition-colors duration-200'
-								>
-									{link.title}
-								</Link>
+								{/* If no dropdown -> clickable Link. If has dropdown -> static label, chevron toggles */}
+								{!link.dropdownItems ? (
+									<Link
+										href={link.link}
+										onClick={() => {
+											// close any open dropdown (if user clicked a link in desktop while a dropdown was open)
+											setOpenDropdown(null);
+										}}
+										className='text-white hover:text-gray-300 font-medium transition-colors duration-200'
+									>
+										{link.title}
+									</Link>
+								) : (
+									<span className='text-white font-medium'>
+										{link.title}
+									</span>
+								)}
 
-								{/* Dropdown trigger */}
+								{/* Chevron trigger for items with dropdown */}
 								{link.dropdownItems && (
 									<button
-										onClick={() => toggleDropdown(link.title)}
+										type='button'
+										aria-expanded={openDropdown === link.title}
+										aria-controls={`${link.title}-menu`}
+										onClick={(e) => {
+											e.stopPropagation(); // avoid bubbling weirdness
+											toggleDropdown(link.title);
+										}}
 										className='ml-1 text-white hover:text-gray-300 transition-colors'
-										aria-label={`${link.title} menu`}
 									>
 										<Icon
 											icon={
@@ -71,14 +132,19 @@ const Header = () => {
 									</button>
 								)}
 
-								{/* Dropdown menu */}
+								{/* Dropdown menu (desktop) */}
 								{link.dropdownItems &&
 									openDropdown === link.title && (
-										<ul className='absolute left-0 top-full mt-2 w-48 bg-white shadow-lg rounded-xl py-2 animate-fadeIn'>
+										<ul
+											id={`${link.title}-menu`}
+											role='menu'
+											className='absolute left-0 top-full mt-2 w-48 bg-white shadow-lg rounded-xl py-2 z-50 transition-opacity duration-150'
+										>
 											{link.dropdownItems.map((item) => (
 												<li key={item.title}>
 													<Link
 														href={item.link}
+														onClick={() => setOpenDropdown(null)} // close after clicking
 														className='block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-primary-red transition-colors'
 													>
 														{item.title}
@@ -118,6 +184,7 @@ const Header = () => {
 						className='md:hidden inline-flex items-center justify-center p-2 rounded-md hover:bg-white/10 transition-colors duration-200'
 						aria-expanded={isMobileMenuOpen}
 						aria-label='Toggle navigation menu'
+						type='button'
 					>
 						<Icon
 							icon={isMobileMenuOpen ? "mdi:close" : "mdi:menu"}
@@ -138,43 +205,58 @@ const Header = () => {
 						{/* Mobile Navigation Links */}
 						{headerLinks.map((link) => (
 							<div key={link.title}>
-								<button
-									onClick={() =>
-										link.dropdownItems
-											? toggleDropdown(link.title)
-											: closeMobileMenu()
-									}
-									className='flex justify-between items-center w-full px-3 py-3 text-base font-medium text-white hover:bg-white/10 rounded-md transition-colors duration-200'
-								>
-									{link.title}
-									{link.dropdownItems && (
-										<Icon
-											icon={
-												openDropdown === link.title
-													? "mdi:chevron-up"
-													: "mdi:chevron-down"
-											}
-											className='text-white text-lg'
-										/>
-									)}
-								</button>
+								{link.dropdownItems ? (
+									<>
+										{/* Parent with dropdown toggle */}
+										<button
+											type='button'
+											onClick={(e) => {
+												e.stopPropagation();
+												toggleDropdown(link.title);
+											}}
+											className='flex justify-between items-center w-full px-3 py-3 text-base font-medium text-white hover:bg-white/10 rounded-md transition-colors duration-200'
+											aria-expanded={openDropdown === link.title}
+											aria-controls={`${link.title}-mobile-menu`}
+										>
+											{link.title}
+											<Icon
+												icon={
+													openDropdown === link.title
+														? "mdi:chevron-up"
+														: "mdi:chevron-down"
+												}
+												className='text-white text-lg'
+											/>
+										</button>
 
-								{/* Mobile Dropdown */}
-								{link.dropdownItems &&
-									openDropdown === link.title && (
-										<div className='ml-4 mt-1 space-y-1'>
-											{link.dropdownItems.map((item) => (
-												<Link
-													key={item.title}
-													href={item.link}
-													onClick={closeMobileMenu}
-													className='block px-3 py-2 text-sm font-medium text-white/90 hover:bg-white/10 rounded-md transition-colors duration-200'
-												>
-													{item.title}
-												</Link>
-											))}
-										</div>
-									)}
+										{/* Mobile Dropdown */}
+										{openDropdown === link.title && (
+											<div
+												id={`${link.title}-mobile-menu`}
+												className='ml-4 mt-1 space-y-1'
+											>
+												{link.dropdownItems.map((item) => (
+													<Link
+														key={item.title}
+														href={item.link}
+														onClick={closeMobileMenu}
+														className='block px-3 py-2 text-sm font-medium text-white/90 hover:bg-white/10 rounded-md transition-colors duration-200'
+													>
+														{item.title}
+													</Link>
+												))}
+											</div>
+										)}
+									</>
+								) : (
+									<Link
+										href={link.link}
+										onClick={closeMobileMenu}
+										className='block px-3 py-3 text-base font-medium text-white hover:bg-white/10 rounded-md transition-colors duration-200'
+									>
+										{link.title}
+									</Link>
+								)}
 							</div>
 						))}
 
