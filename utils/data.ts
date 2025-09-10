@@ -1,3 +1,6 @@
+import { link } from "fs";
+import { title } from "process";
+
 export const headerLinks = [
 	{
 		title: "Home",
@@ -98,5 +101,33 @@ export const values = [
 	{
 		title: "Balance",
 		body: "We present balanced perspectives on complex issues, avoiding sensationalism while addressing both challenges and achievements.",
+	},
+];
+
+export const socialLinks = [
+	{
+		title: "LinkedIn",
+		link: "https://www.linkedin.com/company/the-showcase-africa/",
+		icon: "mdi:linkedin",
+	},
+	{
+		title: "Twitter",
+		link: "https://x.com/showcaseafrica_?s=09",
+		icon: "mdi:twitter",
+	},
+	{
+		title: "YouTube",
+		link: "https://m.youtube.com/@showcaseafricatv",
+		icon: "mdi:youtube",
+	},
+	{
+		title: "Instagram",
+		link: "https://www.instagram.com/showcaseafrica_?igsh=MWZ1N2QzZzU5Z3JiNQ==",
+		icon: "mdi:instagram",
+	},
+	{
+		title: "Tiktok",
+		link: "https://www.tiktok.com/@showcaseafrica_?_t=ZS-8zbd5jJ08VW&_r=1",
+		icon: "mdi:tiktok",
 	},
 ];

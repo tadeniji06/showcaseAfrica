@@ -58,9 +58,14 @@ const Header = () => {
 								className='text-white text-xl lg:text-2xl'
 							/>
 						</button>
-						<button className='bg-white text-primary-red rounded-lg shadow-md px-3 py-2 lg:px-5 lg:py-3 text-sm lg:text-base font-medium hover:bg-gray-50 transition-colors duration-200'>
-							Get In Touch
-						</button>
+						<Link
+							target='_blank'
+							href='https://www.instagram.com/showcaseafrica_?igsh=MWZ1N2QzZzU5Z3JiNQ=='
+						>
+							<button className='cursor-pointer bg-white text-primary-red rounded-lg shadow-md px-3 py-2 lg:px-5 lg:py-3 text-sm lg:text-base font-medium hover:bg-gray-50 transition-colors duration-200'>
+								Get In Touch
+							</button>
+						</Link>
 					</div>
 
 					{/* Mobile menu button */}
@@ -111,12 +116,17 @@ const Header = () => {
 									/>
 									<span className='text-sm font-medium'>Search</span>
 								</button>
-								<button
-									className='flex-1 bg-white text-primary-red rounded-lg px-4 py-3 text-sm font-medium hover:bg-gray-50 transition-colors duration-200'
-									onClick={closeMobileMenu}
+								<Link
+									target='_blank'
+									href='https://www.instagram.com/showcaseafrica_?igsh=MWZ1N2QzZzU5Z3JiNQ=='
 								>
-									Get In Touch
-								</button>
+									<button
+										className='flex-1 bg-white text-primary-red rounded-lg px-4 py-3 text-sm font-medium hover:bg-gray-50 transition-colors duration-200'
+										onClick={closeMobileMenu}
+									>
+										Get In Touch
+									</button>
+								</Link>
 							</div>
 						</div>
 					</div>
