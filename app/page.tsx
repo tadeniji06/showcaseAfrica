@@ -25,7 +25,7 @@ const page = () => {
 			<LatestPosts />
 			{/* <SocialsPosts /> */}
 			<NewPodcasts />
-			<LatestMagazines />
+			{/* <LatestMagazines /> */}
 		</>
 	);
 };

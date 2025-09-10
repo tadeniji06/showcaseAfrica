@@ -1,4 +1,4 @@
-import { hero } from "@/assets";
+import { hero, culture } from "@/assets";
 import Image from "next/image";
 
 const Hero = () => {
@@ -19,7 +19,7 @@ const Hero = () => {
 					<div className='flex-1 flex justify-center lg:justify-end'>
 						<div className='w-full max-w-md lg:max-w-lg'>
 							<Image
-								src={hero}
+								src={culture}
 								alt='Stories from Africa illustration'
 								className='w-full h-auto'
 								priority
