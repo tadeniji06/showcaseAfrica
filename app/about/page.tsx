@@ -1,6 +1,7 @@
 import AboutHero from "@/components/AboutHero";
 import Mission from "@/components/Mission";
 import OurStory from "@/components/OurStory";
+import Socials from "@/components/Socials";
 import Values from "@/components/Values";
 
 const page = () => {
@@ -10,6 +11,7 @@ const page = () => {
 			<OurStory />
 			<Mission />
 			<Values />
+			<Socials />
 		</div>
 	);
 };

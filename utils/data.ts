@@ -128,6 +128,6 @@ export const socialLinks = [
 	{
 		title: "Tiktok",
 		link: "https://www.tiktok.com/@showcaseafrica_?_t=ZS-8zbd5jJ08VW&_r=1",
-		icon: "mdi:tiktok",
+		icon: "ic:baseline-tiktok",
 	},
 ];

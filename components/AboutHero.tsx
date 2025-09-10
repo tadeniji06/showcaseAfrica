@@ -1,5 +1,6 @@
 import { hero } from "@/assets";
 import Image from "next/image";
+import Link from "next/link";
 
 const AboutHero = () => {
 	return (
@@ -17,9 +18,14 @@ const AboutHero = () => {
 							culture, business, lifestyle, politics, and
 							entertainment for a global audience
 						</p>
-						<button className='bg-white text-primary-red px-5 py-3 rounded-md mt-6 font-semibold hover:bg-gray-100 transition'>
-							Connect With Us
-						</button>
+						<Link
+							target='_blank'
+							href='https://www.instagram.com/showcaseafrica_?igsh=MWZ1N2QzZzU5Z3JiNQ=='
+						>
+							<button className='bg-white text-primary-red px-5 py-3 rounded-md mt-6 font-semibold hover:bg-gray-100 transition'>
+								Connect With Us
+							</button>
+						</Link>
 					</div>
 					<div className='flex-1 flex justify-center lg:justify-end'>
 						<div className='w-full max-w-md lg:max-w-lg'>
