@@ -185,25 +185,6 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
 					</div>
 				</div>
 			</div>
-
-			{/* Bottom Brand Bar */}
-			{/* <div className='bg-gradient-to-r from-[#990100] to-[#ce3a3a] px-4 py-3 sm:px-6 sm:py-4 lg:px-8'>
-				<div className='flex items-center justify-between text-white text-sm lg:text-base'>
-					<div className='flex items-center gap-2'>
-						<Icon
-							icon='mdi:africa'
-							className='w-4 h-4 lg:w-5 lg:h-5'
-						/>
-						<span className='font-bold'>ShowcaseAfrica</span>
-					</div>
-					<div className='text-xs sm:text-sm opacity-90'>
-						<span className='hidden sm:inline'>
-							Celebrating African Excellence
-						</span>
-						<span className='sm:hidden'>African Excellence</span>
-					</div>
-				</div>
-			</div> */}
 		</section>
 	);
 };
