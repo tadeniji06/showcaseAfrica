@@ -62,11 +62,11 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
 				<div className='flex-1 p-8 lg:p-12'>
 					{/* Header */}
 					<div className='flex items-center gap-4 mb-6'>
-						<div className='w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-red to-[#ce3a3a] flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-500'>
+						<div className='w-16 h-16 rounded-2xl bg-gradient-to-br from-[#990100] to-[#ce3a3a] flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-500'>
 							<Icon icon={icon} className='w-8 h-8 text-white' />
 						</div>
 						<div>
-							<h2 className='text-3xl lg:text-4xl font-bold text-gray-900 group-hover:text-primary-refrom-primary-red transition-colors duration-300'>
+							<h2 className='text-3xl lg:text-4xl font-bold text-gray-900 group-hover:text-[#990100] transition-colors duration-300'>
 								{title}
 							</h2>
 							<p className='text-lg text-gray-600 mt-1'>
@@ -90,7 +90,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
 						<h3 className='text-xl font-bold text-gray-900 mb-4 flex items-center gap-2'>
 							<Icon
 								icon='mdi:star'
-								className='w-5 h-5 text-primary-refrom-primary-red'
+								className='w-5 h-5 text-[#990100]'
 							/>
 							Featured Spotlights
 						</h3>
@@ -98,7 +98,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
 							{spotlights.map((spotlight, index) => (
 								<span
 									key={index}
-									className='px-4 py-2 bg-gradient-to-r from-primary-red/10 to-[#ce3a3a]/10 text-primary-refrom-primary-red rounded-full text-sm font-semibold border border-primary-refrom-primary-red/20 hover:bg-gradient-to-r hover:from-primary-red hover:to-[#ce3a3a] hover:text-white transition-all duration-300 cursor-pointer'
+									className='px-4 py-2 bg-gradient-to-r from-[#990100]/10 to-[#ce3a3a]/10 text-[#990100] rounded-full text-sm font-semibold border border-[#990100]/20 hover:bg-gradient-to-r hover:from-[#990100] hover:to-[#ce3a3a] hover:text-white transition-all duration-300 cursor-pointer'
 								>
 									{spotlight}
 								</span>
@@ -108,13 +108,13 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
 
 					{/* Action Buttons */}
 					<div className='flex flex-col sm:flex-row gap-4'>
-						<Link href={'/posts'}>
-						 <button className='flex items-center justify-center gap-3 bg-gradient-to-r from-primary-red to-[#ce3a3a] text-white px-8 py-4 rounded-xl font-bold text-lg hover:shadow-xl transition-all duration-300 hover:scale-105'>
- 							<Icon icon='mdi:eye' className='w-6 h-6' />
- 							Explore Stories
- 						</button>
+						<Link href={"/posts"}>
+							<button className='flex items-center justify-center gap-3 bg-gradient-to-r from-[#990100] to-[#ce3a3a] text-white px-8 py-4 rounded-xl font-bold text-lg hover:shadow-xl transition-all duration-300 hover:scale-105'>
+								<Icon icon='mdi:eye' className='w-6 h-6' />
+								Explore Stories
+							</button>
 						</Link>
-						<button className='flex items-center justify-center gap-3 bg-white border-2 border-primary-refrom-primary-red text-primary-refrom-primary-red px-8 py-4 rounded-xl font-bold text-lg hover:bg-primary-refrom-primary-red hover:text-white transition-all duration-300'>
+						<button className='flex items-center justify-center gap-3 bg-white border-2 border-[#990100] text-[#990100] px-8 py-4 rounded-xl font-bold text-lg hover:bg-[#990100] hover:text-white transition-all duration-300'>
 							<Icon icon='mdi:bookmark-outline' className='w-6 h-6' />
 							Save Category
 						</button>
@@ -139,20 +139,20 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
 										<span className='flex items-center gap-1 text-gray-700'>
 											<Icon
 												icon='mdi:clock-outline'
-												className='w-4 h-4 text-primary-refrom-primary-red'
+												className='w-4 h-4 text-[#990100]'
 											/>
 											5 min read
 										</span>
 										<span className='flex items-center gap-1 text-gray-700'>
 											<Icon
 												icon='mdi:heart'
-												className='w-4 h-4 text-primary-refrom-primary-red'
+												className='w-4 h-4 text-[#990100]'
 											/>
 											{Math.floor(Math.random() * 500) + 100}
 										</span>
 									</div>
 									<div className='flex items-center gap-2'>
-										<div className='w-6 h-6 rounded-full bg-primary-refrom-primary-red'></div>
+										<div className='w-6 h-6 rounded-full bg-[#990100]'></div>
 										<div className='w-6 h-6 rounded-full bg-[#ce3a3a] -ml-2'></div>
 										<div className='w-6 h-6 rounded-full bg-orange-500 -ml-2'></div>
 										<span className='ml-2 text-xs font-semibold'>
@@ -167,7 +167,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
 			</div>
 
 			{/* Bottom Brand Bar */}
-			<div className='bg-gradient-to-r from-primary-red to-[#ce3a3a] px-8 py-4'>
+			<div className='bg-gradient-to-r from-[#990100] to-[#ce3a3a] px-8 py-4'>
 				<div className='flex items-center justify-between text-white'>
 					<div className='flex items-center gap-2'>
 						<Icon icon='mdi:africa' className='w-5 h-5' />
@@ -321,15 +321,18 @@ const App: React.FC = () => {
 	return (
 		<div className='min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100'>
 			{/* Header Section */}
-			<div className='bg-gradient-to-r from-primary-red to-[#ce3a3a] text-white py-16'>
-				<div className='max-w-6xl mx-auto px-8 text-center'>
-					<div className='flex items-center justify-center gap-3 mb-6'>
-						<Icon icon='mdi:africa' className='w-12 h-12' />
-						<h1 className='text-5xl lg:text-6xl font-bold'>
+			<div className='bg-gradient-to-r from-[#990100] to-[#ce3a3a] text-white py-12 sm:py-16'>
+				<div className='max-w-6xl mx-auto px-6 sm:px-8 text-center'>
+					<div className='flex items-center justify-center gap-2 sm:gap-3 mb-4 sm:mb-6'>
+						<Icon
+							icon='mdi:africa'
+							className='w-8 h-8 sm:w-12 sm:h-12'
+						/>
+						<h1 className='text-3xl sm:text-5xl lg:text-6xl font-bold'>
 							ShowcaseAfrica
 						</h1>
 					</div>
-					<p className='text-xl lg:text-2xl opacity-90 max-w-3xl mx-auto leading-relaxed'>
+					<p className='text-base sm:text-xl lg:text-2xl opacity-90 max-w-3xl mx-auto leading-relaxed'>
 						Your premier destination for authentic African stories,
 						celebrating the continent's rich diversity, innovation,
 						and cultural heritage through comprehensive journalism.
@@ -338,7 +341,7 @@ const App: React.FC = () => {
 			</div>
 
 			{/* Categories Section */}
-			<div className='max-w-6xl mx-auto px-8 py-16'>
+			<div className='max-w-6xl mx-auto px-4 sm:px-8 py-12 sm:py-16'>
 				<div className='flex flex-col space-y-0'>
 					<Business />
 					<Culture />
@@ -350,16 +353,18 @@ const App: React.FC = () => {
 			</div>
 
 			{/* Footer */}
-			<div className='bg-gray-900 text-white py-12'>
-				<div className='max-w-6xl mx-auto px-8 text-center'>
-					<div className='flex items-center justify-center gap-3 mb-4'>
+			<div className='bg-gray-900 text-white py-8 sm:py-12'>
+				<div className='max-w-6xl mx-auto px-6 sm:px-8 text-center'>
+					<div className='flex items-center justify-center gap-2 sm:gap-3 mb-3 sm:mb-4'>
 						<Icon
 							icon='mdi:africa'
-							className='w-8 h-8 text-primary-refrom-primary-red'
+							className='w-6 h-6 sm:w-8 sm:h-8 text-[#990100]'
 						/>
-						<span className='text-2xl font-bold'>ShowcaseAfrica</span>
+						<span className='text-xl sm:text-2xl font-bold'>
+							ShowcaseAfrica
+						</span>
 					</div>
-					<p className='text-gray-400'>
+					<p className='text-sm sm:text-base text-gray-400'>
 						Celebrating African Excellence • Connecting Communities •
 						Inspiring the World
 					</p>
