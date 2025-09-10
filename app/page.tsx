@@ -23,7 +23,7 @@ const page = () => {
 			<Sports />
 			<Travel /> */}
 			<LatestPosts />
-			<SocialsPosts />
+			{/* <SocialsPosts /> */}
 			<NewPodcasts />
 			<LatestMagazines />
 		</>

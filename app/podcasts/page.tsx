@@ -1,3 +1,4 @@
+import App from "@/components/podcasts/App";
 import PodcastBody from "@/components/podcasts/PodcastBody";
 import PodcastHero from "@/components/podcasts/PodcastHero";
 import type { Metadata } from "next";
@@ -59,8 +60,9 @@ export const metadata: Metadata = {
 const page = () => {
 	return (
 		<>
-			<PodcastHero />
-			<PodcastBody />
+			<App />
+			{/* <PodcastHero />
+			<PodcastBody /> */}
 		</>
 	);
 };
