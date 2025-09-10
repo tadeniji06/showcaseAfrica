@@ -1,3 +1,4 @@
+import { politics } from "@/assets"
 const Politics = () => {
   return (
     <div>Politics</div>

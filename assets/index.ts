@@ -12,6 +12,13 @@ import i5 from "./i5.png";
 import p1 from "./podcast 1.png";
 import p2 from "./podcast 2.png";
 import pod from "./pod.jpg";
+
+import bizz from "./bizz.jpg";
+import culture from "./culture.jpg";
+import ent from "./ent.jpg";
+import politics from "./politics.jpg";
+import sports from "./sports.jpg";
+import travel from "./travel.jpg";
 export {
 	logo,
 	hero,
@@ -27,4 +34,10 @@ export {
 	p1,
 	p2,
 	pod,
+	bizz,
+	culture,
+	ent,
+	politics,
+	sports,
+	travel,
 };
