@@ -15,8 +15,8 @@ const LatestPosts = () => {
 		const fetchPosts = async () => {
 			try {
 				setLoading(true);
-				const allPosts = await getBlogPosts(11); 
-				const latestPosts = allPosts.slice(0, 6); 
+				const allPosts = await getBlogPosts(11);
+				const latestPosts = allPosts.slice(0, 6);
 				setPosts(latestPosts);
 			} catch (err) {
 				setError("Failed to load posts");
@@ -119,7 +119,7 @@ const LatestPosts = () => {
 
 	return (
 		<section className='py-20 px-6 lg:px-12 bg-white'>
-			<div className='max-w-7xl mx-auto'>
+			<div className='max-w-[1400px] mx-auto'>
 				<motion.div
 					className='mb-16 text-center'
 					initial={{ opacity: 0, y: 20 }}
