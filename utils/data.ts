@@ -1,3 +1,5 @@
+import { title } from "process";
+
 export const headerLinks = [
 	{
 		title: "Home",
@@ -6,18 +8,14 @@ export const headerLinks = [
 	{
 		title: "Business",
 		link: "/posts",
-		dropdownItems: [
-			{ title: "Finance", link: "/posts" },
-			{ title: "Investment", link: "/posts" },
-		],
 	},
 	{
 		title: "Culture",
 		link: "/posts",
-		dropdownItems: [
-			{ title: "Art", link: "/posts" },
-			{ title: "Music", link: "/posts" },
-		],
+	},
+	{
+		title: "Entertainment",
+		link: "/posts",
 	},
 	{
 		title: "Magazines",
