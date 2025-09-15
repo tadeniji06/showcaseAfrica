@@ -7,7 +7,7 @@ export interface Author {
 	_id: string;
 	name: string;
 	image?: SanityImageSource;
-	bio?: string;
+	bio?: any;
 }
 
 export interface Category {

@@ -5,7 +5,128 @@ import Link from "next/link";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { PortableText } from "@portabletext/react";
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+
+// Author Hover Card Component
+const AuthorHoverCard = ({ author, children }: { author: any; children: React.ReactNode }) => {
+	const [isHovered, setIsHovered] = useState(false);
+	const [showMobile, setShowMobile] = useState(false);
+
+	const handleMobileClick = (e: React.MouseEvent) => {
+		e.preventDefault();
+		setShowMobile(true);
+	};
+
+	return (
+		<>
+			{/* Desktop - Hover Card */}
+			<div
+				className="relative hidden md:inline-block"
+				onMouseEnter={() => setIsHovered(true)}
+				onMouseLeave={() => setIsHovered(false)}
+			>
+				{children}
+				<AnimatePresence>
+					{isHovered && (
+						<motion.div
+							initial={{ opacity: 0, y: 10, scale: 0.95 }}
+							animate={{ opacity: 1, y: 0, scale: 1 }}
+							exit={{ opacity: 0, y: 10, scale: 0.95 }}
+							transition={{ duration: 0.2 }}
+							className="absolute bottom-full left-0 mb-2 z-50 bg-white rounded-lg shadow-xl border border-gray-200 p-4 w-64"
+						>
+							<div className="flex items-start gap-3">
+								{author.image && (
+									<div className="relative w-12 h-12 rounded-full overflow-hidden flex-shrink-0">
+										<Image
+											src={urlFor(author.image).width(48).height(48).url()}
+											alt={author.name}
+											fill
+											className="object-cover"
+										/>
+									</div>
+								)}
+								<div className="flex-1 min-w-0">
+									<h4 className="font-semibold text-gray-900 text-sm">
+										{author.name}
+									</h4>
+									{author.bio && (
+										<p className="text-gray-600 text-xs mt-1 line-clamp-3">
+											{author.bio}
+										</p>
+									)}
+								</div>
+							</div>
+							{/* Arrow */}
+							<div className="absolute top-full left-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-white"></div>
+						</motion.div>
+					)}
+				</AnimatePresence>
+			</div>
+
+			{/* Mobile - Clickable */}
+			<div className="md:hidden" onClick={handleMobileClick}>
+				{children}
+			</div>
+
+			{/* Mobile Popup */}
+			<AnimatePresence>
+				{showMobile && (
+					<motion.div
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						exit={{ opacity: 0 }}
+						transition={{ duration: 0.2 }}
+						className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4 md:hidden"
+						onClick={() => setShowMobile(false)}
+					>
+						<motion.div
+							initial={{ opacity: 0, scale: 0.9 }}
+							animate={{ opacity: 1, scale: 1 }}
+							exit={{ opacity: 0, scale: 0.9 }}
+							transition={{ duration: 0.2 }}
+							className="bg-white rounded-lg p-6 w-full max-w-sm"
+							onClick={(e) => e.stopPropagation()}
+						>
+							<div className="flex items-center justify-between mb-4">
+								<h3 className="text-lg font-semibold text-gray-900">Author</h3>
+								<button
+									onClick={() => setShowMobile(false)}
+									className="p-1 rounded-full hover:bg-gray-100 transition-colors"
+								>
+									<Icon icon="lucide:x" width={20} height={20} />
+								</button>
+							</div>
+							
+							<div className="flex items-start gap-4">
+								{author.image && (
+									<div className="relative w-16 h-16 rounded-full overflow-hidden flex-shrink-0">
+										<Image
+											src={urlFor(author.image).width(64).height(64).url()}
+											alt={author.name}
+											fill
+											className="object-cover"
+										/>
+									</div>
+								)}
+								<div className="flex-1 min-w-0">
+									<h4 className="font-semibold text-gray-900 mb-2">
+										{author.name}
+									</h4>
+									{author.bio && (
+										<p className="text-gray-600 text-sm leading-relaxed">
+											{author.bio}
+										</p>
+									)}
+								</div>
+							</div>
+						</motion.div>
+					</motion.div>
+				)}
+			</AnimatePresence>
+		</>
+	);
+};
 
 interface PostClientProps {
 	post: BlogPost;
@@ -45,8 +166,7 @@ const PostClient = ({ post }: PostClientProps) => {
 		});
 	};
 
-	const shareUrl =
-		typeof window !== "undefined" ? window.location.href : "";
+	const shareUrl = typeof window !== "undefined" ? window.location.href : "";
 	const encodedUrl = encodeURIComponent(shareUrl);
 	const encodedTitle = encodeURIComponent(post.title);
 
@@ -76,16 +196,16 @@ const PostClient = ({ post }: PostClientProps) => {
 	const portableTextComponents = {
 		types: {
 			image: ({ value }: any) => (
-				<div className='my-8'>
+				<div className="my-8">
 					<Image
 						src={urlFor(value).width(800).height(450).url()}
 						alt={value.alt || "Post image"}
 						width={800}
 						height={450}
-						className='rounded-lg w-full h-auto'
+						className="rounded-lg w-full h-auto"
 					/>
 					{value.caption && (
-						<p className='text-sm text-gray-600 text-center mt-2 italic'>
+						<p className="text-sm text-gray-600 text-center mt-2 italic">
 							{value.caption}
 						</p>
 					)}
@@ -94,46 +214,46 @@ const PostClient = ({ post }: PostClientProps) => {
 		},
 		block: {
 			h2: ({ children }: any) => (
-				<h2 className='text-2xl md:text-3xl font-bold text-gray-900 mb-4 mt-8'>
+				<h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 mt-8">
 					{children}
 				</h2>
 			),
 			h3: ({ children }: any) => (
-				<h3 className='text-xl md:text-2xl font-bold text-gray-900 mb-3 mt-6'>
+				<h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 mt-6">
 					{children}
 				</h3>
 			),
 			h4: ({ children }: any) => (
-				<h4 className='text-lg md:text-xl font-semibold text-gray-900 mb-2 mt-4'>
+				<h4 className="text-lg md:text-xl font-semibold text-gray-900 mb-2 mt-4">
 					{children}
 				</h4>
 			),
 			normal: ({ children }: any) => (
-				<p className='text-gray-700 leading-relaxed mb-4 text-base md:text-lg'>
+				<p className="text-gray-700 leading-relaxed mb-4 text-base md:text-lg">
 					{children}
 				</p>
 			),
 			blockquote: ({ children }: any) => (
-				<blockquote className='border-l-4 border-primary-red pl-6 py-2 my-6 italic text-gray-700 bg-gray-50 rounded-r-lg'>
+				<blockquote className="border-l-4 border-primary-red pl-6 py-2 my-6 italic text-gray-700 bg-gray-50 rounded-r-lg">
 					{children}
 				</blockquote>
 			),
 		},
 		marks: {
 			strong: ({ children }: any) => (
-				<strong className='font-bold text-gray-900'>
+				<strong className="font-bold text-gray-900">
 					{children}
 				</strong>
 			),
 			em: ({ children }: any) => (
-				<em className='italic text-gray-700'>{children}</em>
+				<em className="italic text-gray-700">{children}</em>
 			),
 			link: ({ children, value }: any) => (
 				<a
 					href={value.href}
-					target='_blank'
-					rel='noopener noreferrer'
-					className='text-primary-red hover:text-red-700 underline transition-colors duration-200'
+					target="_blank"
+					rel="noopener noreferrer"
+					className="text-primary-red hover:text-red-700 underline transition-colors duration-200"
 				>
 					{children}
 				</a>
@@ -141,20 +261,20 @@ const PostClient = ({ post }: PostClientProps) => {
 		},
 		list: {
 			bullet: ({ children }: any) => (
-				<ul className='list-disc pl-6 mb-4 space-y-1'>{children}</ul>
+				<ul className="list-disc pl-6 mb-4 space-y-1">{children}</ul>
 			),
 			number: ({ children }: any) => (
-				<ol className='list-decimal pl-6 mb-4 space-y-1'>
+				<ol className="list-decimal pl-6 mb-4 space-y-1">
 					{children}
 				</ol>
 			),
 		},
 		listItem: {
 			bullet: ({ children }: any) => (
-				<li className='text-gray-700 leading-relaxed'>{children}</li>
+				<li className="text-gray-700 leading-relaxed">{children}</li>
 			),
 			number: ({ children }: any) => (
-				<li className='text-gray-700 leading-relaxed'>{children}</li>
+				<li className="text-gray-700 leading-relaxed">{children}</li>
 			),
 		},
 	};
@@ -184,21 +304,21 @@ const PostClient = ({ post }: PostClientProps) => {
 	return (
 		<motion.div
 			variants={containerVariants}
-			initial='hidden'
-			animate='visible'
-			className='min-h-screen bg-gray-50'
+			initial="hidden"
+			animate="visible"
+			className="min-h-screen bg-gray-50"
 		>
 			{/* Header */}
 			<motion.header
 				variants={itemVariants}
-				className='bg-white border-b border-gray-200'
+				className="bg-white border-b border-gray-200"
 			>
-				<div className='container mx-auto px-6 lg:px-12 py-6'>
+				<div className="container mx-auto px-6 lg:px-12 py-6">
 					<Link
-						href='/posts'
-						className='inline-flex items-center gap-2 text-primary-red hover:text-red-700 transition-colors duration-200'
+						href="/posts"
+						className="inline-flex items-center gap-2 text-primary-red hover:text-red-700 transition-colors duration-200"
 					>
-						<Icon icon='lucide:arrow-left' width={20} height={20} />
+						<Icon icon="lucide:arrow-left" width={20} height={20} />
 						Back to Posts
 					</Link>
 				</div>
@@ -208,35 +328,35 @@ const PostClient = ({ post }: PostClientProps) => {
 			{post.mainImage && (
 				<motion.div
 					variants={itemVariants}
-					className='relative h-96 md:h-[500px] lg:h-[600px] overflow-hidden'
+					className="relative h-96 md:h-[500px] lg:h-[600px] overflow-hidden"
 				>
 					<Image
 						src={urlFor(post.mainImage).width(1200).height(600).url()}
 						alt={post.title}
 						fill
-						className='object-cover'
+						className="object-cover"
 						priority
 					/>
-					<div className='absolute inset-0 bg-gradient-to-t from-black/50 to-transparent' />
+					<div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
 				</motion.div>
 			)}
 
 			{/* Main Content */}
-			<main className='container mx-auto px-6 lg:px-12 py-12'>
-				<div className='max-w-4xl mx-auto'>
+			<main className="container mx-auto px-6 lg:px-12 py-12">
+				<div className="max-w-4xl mx-auto">
 					{/* Article Header */}
 					<motion.article
 						variants={itemVariants}
-						className='bg-white rounded-lg shadow-sm p-8 md:p-12 mb-8'
+						className="bg-white rounded-lg shadow-sm p-8 md:p-12 mb-8"
 					>
-						<header className='mb-8'>
+						<header className="mb-8">
 							{/* Categories */}
 							{post.categories && post.categories.length > 0 && (
-								<div className='flex flex-wrap gap-2 mb-6'>
+								<div className="flex flex-wrap gap-2 mb-6">
 									{post.categories.map((category) => (
 										<span
 											key={category._id}
-											className='px-3 py-1 bg-primary-red/10 text-primary-red text-sm font-medium rounded-full'
+											className="px-3 py-1 bg-primary-red/10 text-primary-red text-sm font-medium rounded-full"
 										>
 											{category.title}
 										</span>
@@ -245,27 +365,27 @@ const PostClient = ({ post }: PostClientProps) => {
 							)}
 
 							{/* Title */}
-							<h1 className='text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight'>
+							<h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
 								{post.title}
 							</h1>
 
 							{/* Meta Information */}
-							<div className='flex flex-wrap items-center gap-6 text-gray-600 mb-6'>
+							<div className="flex flex-wrap items-center gap-6 text-gray-600 mb-6">
 								<time
 									dateTime={post.publishedAt}
-									className='flex items-center gap-2'
+									className="flex items-center gap-2"
 								>
 									<Icon
-										icon='lucide:calendar'
+										icon="lucide:calendar"
 										width={16}
 										height={16}
 									/>
 									{formatDate(post.publishedAt)}
 								</time>
 								{post.estimatedReadingTime > 0 && (
-									<span className='flex items-center gap-2'>
+									<span className="flex items-center gap-2">
 										<Icon
-											icon='lucide:clock'
+											icon="lucide:clock"
 											width={16}
 											height={16}
 										/>
@@ -274,58 +394,62 @@ const PostClient = ({ post }: PostClientProps) => {
 								)}
 							</div>
 
-							{/* Author */}
+							{/* Author with Hover Card */}
 							{post.author && (
-								<div className='flex items-center gap-4 pb-6 border-b border-gray-200'>
-									{post.author.image && (
-										<div className='relative w-12 h-12 rounded-full overflow-hidden'>
-											<Image
-												src={urlFor(post.author.image)
-													.width(48)
-													.height(48)
-													.url()}
-												alt={post.author.name}
-												fill
-												className='object-cover'
-											/>
+								<div className="pb-6 border-b border-gray-200">
+									<AuthorHoverCard author={post.author}>
+										<div className="flex items-center gap-4 cursor-pointer">
+											{post.author.image && (
+												<div className="relative w-12 h-12 rounded-full overflow-hidden">
+													<Image
+														src={urlFor(post.author.image)
+															.width(48)
+															.height(48)
+															.url()}
+														alt={post.author.name}
+														fill
+														className="object-cover"
+													/>
+												</div>
+											)}
+											<div>
+												<p className="font-semibold text-gray-900 hover:text-primary-red transition-colors">
+													{post.author.name}
+												</p>
+												<p className="text-sm text-gray-600">
+													Click to view profile
+												</p>
+											</div>
 										</div>
-									)}
-									<div>
-										<p className='font-semibold text-gray-900'>
-											{post.author.name}
-										</p>
-										{post.author.bio && (
-											<p className='text-sm text-gray-600'>
-												{post.author.bio}
-											</p>
-										)}
-									</div>
+									</AuthorHoverCard>
 								</div>
 							)}
 						</header>
 
 						{/* Article Content */}
-						<div className='prose prose-lg max-w-none'>
-							<PortableText
-								value={post.body}
-								components={portableTextComponents}
-							/>
-						</div>
+						{post.body && post.body.length > 0 && (
+							<div className="prose prose-lg max-w-none">
+								<PortableText
+									value={post.body}
+									components={portableTextComponents}
+								/>
+							</div>
+						)}
 
 						{/* Share Buttons */}
-						<footer className='mt-12 pt-8 border-t border-gray-200'>
-							<div className='flex items-center justify-between flex-wrap gap-4'>
-								<h3 className='text-lg font-semibold text-gray-900'>
+						<footer className="mt-12 pt-8 border-t border-gray-200">
+							<div className="flex items-center justify-between flex-wrap gap-4">
+								<h3 className="text-lg font-semibold text-gray-900">
 									Share this post
 								</h3>
-								<div className='flex items-center gap-3'>
+								<div className="flex items-center gap-3">
 									{socialLinks.map((social) => (
 										<a
 											key={social.name}
 											href={social.url}
-											target='_blank'
-											rel='noopener noreferrer'
-											className='p-3 bg-gray-100 hover:bg-primary-red hover:text-white rounded-full transition-colors duration-200'
+											target="_blank"
+											rel="noopener noreferrer"
+											className="p-3 bg-gray-100 hover:bg-primary-red hover:text-white rounded-full transition-colors duration-200"
 											aria-label={`Share on ${social.name}`}
 										>
 											<Icon
@@ -344,19 +468,19 @@ const PostClient = ({ post }: PostClientProps) => {
 					{relatedPosts.length > 0 && (
 						<motion.section
 							variants={itemVariants}
-							className='bg-white rounded-lg shadow-sm p-8'
+							className="bg-white rounded-lg shadow-sm p-8"
 						>
-							<h2 className='text-2xl md:text-3xl font-bold text-gray-900 mb-8 flex items-center'>
+							<h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8 flex items-center">
 								<Icon
-									icon='lucide:bookmark'
-									className='mr-3 text-primary-red'
+									icon="lucide:bookmark"
+									className="mr-3 text-primary-red"
 									width={28}
 									height={28}
 								/>
 								Related Posts
 							</h2>
 
-							<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+							<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 								{relatedPosts.map((relatedPost, index) => (
 									<motion.div
 										key={relatedPost._id}
@@ -364,12 +488,12 @@ const PostClient = ({ post }: PostClientProps) => {
 										animate={{ opacity: 1, y: 0 }}
 										transition={{ duration: 0.5, delay: index * 0.1 }}
 										whileHover={{ y: -5 }}
-										className='group'
+										className="group"
 									>
 										<Link href={`/posts/${relatedPost.slug.current}`}>
-											<article className='bg-gray-50 rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300'>
+											<article className="bg-gray-50 rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300">
 												{relatedPost.mainImage && (
-													<div className='aspect-video relative overflow-hidden'>
+													<div className="aspect-video relative overflow-hidden">
 														<Image
 															src={urlFor(relatedPost.mainImage)
 																.width(300)
@@ -377,18 +501,18 @@ const PostClient = ({ post }: PostClientProps) => {
 																.url()}
 															alt={relatedPost.title}
 															fill
-															className='object-cover group-hover:scale-105 transition-transform duration-300'
-															sizes='(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw'
+															className="object-cover group-hover:scale-105 transition-transform duration-300"
+															sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
 														/>
 													</div>
 												)}
 
-												<div className='p-4'>
-													<h3 className='font-semibold text-gray-900 group-hover:text-primary-red transition-colors duration-200 line-clamp-2 mb-2'>
+												<div className="p-4">
+													<h3 className="font-semibold text-gray-900 group-hover:text-primary-red transition-colors duration-200 line-clamp-2 mb-2">
 														{relatedPost.title}
 													</h3>
 
-													<div className='flex items-center gap-4 text-sm text-gray-500'>
+													<div className="flex items-center gap-4 text-sm text-gray-500">
 														<time dateTime={relatedPost.publishedAt}>
 															{formatDate(relatedPost.publishedAt)}
 														</time>
@@ -414,13 +538,13 @@ const PostClient = ({ post }: PostClientProps) => {
 					{/* Navigation */}
 					<motion.div
 						variants={itemVariants}
-						className='mt-8 text-center'
+						className="mt-8 text-center"
 					>
 						<Link
-							href='/posts'
-							className='inline-flex items-center gap-2 bg-primary-red text-white px-6 py-3 rounded-lg hover:bg-red-700 transition-colors duration-200 font-medium'
+							href="/posts"
+							className="inline-flex items-center gap-2 bg-primary-red text-white px-6 py-3 rounded-lg hover:bg-red-700 transition-colors duration-200 font-medium"
 						>
-							<Icon icon='lucide:grid-3x3' width={20} height={20} />
+							<Icon icon="lucide:grid-3x3" width={20} height={20} />
 							View All Posts
 						</Link>
 					</motion.div>

@@ -15,9 +15,8 @@ const LatestPosts = () => {
 		const fetchPosts = async () => {
 			try {
 				setLoading(true);
-				// Skip the first 5 posts since they're shown in the hero
-				const allPosts = await getBlogPosts(11); // Get 11 to skip 5 and show 6
-				const latestPosts = allPosts.slice(5, 11); // Skip first 5, take next 6
+				const allPosts = await getBlogPosts(11); 
+				const latestPosts = allPosts.slice(0, 6); 
 				setPosts(latestPosts);
 			} catch (err) {
 				setError("Failed to load posts");

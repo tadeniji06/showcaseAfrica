@@ -16,7 +16,7 @@ const Hero = () => {
 		const fetchPosts = async () => {
 			try {
 				setLoading(true);
-				const latestPosts = await getBlogPosts(5); // Get 5 latest posts for hero
+				const latestPosts = await getBlogPosts(5); 
 				setPosts(latestPosts);
 			} catch (err) {
 				console.error("Error fetching posts:", err);
