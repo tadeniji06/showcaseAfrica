@@ -2,7 +2,6 @@ import { createClient } from "@sanity/client";
 import imageUrlBuilder from "@sanity/image-url";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
-// Define types for better TypeScript support
 export interface Author {
 	_id: string;
 	name: string;
