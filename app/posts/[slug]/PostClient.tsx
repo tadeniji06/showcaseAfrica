@@ -7,19 +7,18 @@ import { PortableText } from "@portabletext/react";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const AuthorHoverCard = ({
+const AuthorPopup = ({
 	author,
 	children,
 }: {
 	author: any;
 	children: React.ReactNode;
 }) => {
-	const [isHovered, setIsHovered] = useState(false);
-	const [showMobile, setShowMobile] = useState(false);
+	const [showPopup, setShowPopup] = useState(false);
 
-	const handleMobileClick = (e: React.MouseEvent) => {
+	const handleClick = (e: React.MouseEvent) => {
 		e.preventDefault();
-		setShowMobile(true);
+		setShowPopup(true);
 	};
 
 	// Reusable bio renderer
@@ -39,95 +38,54 @@ const AuthorHoverCard = ({
 
 	return (
 		<>
-			{/* Desktop - Hover Card */}
-			<div
-				className='relative hidden md:inline-block'
-				onMouseEnter={() => setIsHovered(true)}
-				onMouseLeave={() => setIsHovered(false)}
-			>
-				{children}
-				<AnimatePresence>
-					{isHovered && (
-						<motion.div
-							initial={{ opacity: 0, y: 10, scale: 0.95 }}
-							animate={{ opacity: 1, y: 0, scale: 1 }}
-							exit={{ opacity: 0, y: 10, scale: 0.95 }}
-							transition={{ duration: 0.2 }}
-							className='absolute bottom-full left-0 mb-2 z-50 bg-white rounded-lg shadow-xl border border-gray-200 p-4 w-64'
-						>
-							<div className='flex items-start gap-3'>
-								{author.image && (
-									<div className='relative w-12 h-12 rounded-full overflow-hidden flex-shrink-0'>
-										<Image
-											src={urlFor(author.image)
-												.width(48)
-												.height(48)
-												.url()}
-											alt={author.name}
-											fill
-											className='object-cover'
-										/>
-									</div>
-								)}
-								<div className='flex-1 min-w-0'>
-									<h4 className='font-semibold text-gray-900 text-sm'>
-										{author.name}
-									</h4>
-									{renderBio(
-										"text-gray-600 text-xs mt-1 line-clamp-3"
-									)}
-								</div>
-							</div>
-							{/* Arrow */}
-							<div className='absolute top-full left-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-white'></div>
-						</motion.div>
-					)}
-				</AnimatePresence>
-			</div>
-
-			{/* Mobile - Clickable */}
-			<div className='md:hidden' onClick={handleMobileClick}>
+			{/* Clickable trigger for both desktop and mobile */}
+			<div onClick={handleClick} className='cursor-pointer'>
 				{children}
 			</div>
 
-			{/* Mobile Popup */}
+			{/* Popup Modal */}
 			<AnimatePresence>
-				{showMobile && (
+				{showPopup && (
 					<motion.div
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
 						exit={{ opacity: 0 }}
 						transition={{ duration: 0.2 }}
-						className='fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4 md:hidden'
-						onClick={() => setShowMobile(false)}
+						className='fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4'
+						onClick={() => setShowPopup(false)}
 					>
 						<motion.div
-							initial={{ opacity: 0, scale: 0.9 }}
-							animate={{ opacity: 1, scale: 1 }}
-							exit={{ opacity: 0, scale: 0.9 }}
-							transition={{ duration: 0.2 }}
-							className='bg-white rounded-lg p-6 w-full max-w-sm'
+							initial={{ opacity: 0, scale: 0.9, y: 20 }}
+							animate={{ opacity: 1, scale: 1, y: 0 }}
+							exit={{ opacity: 0, scale: 0.9, y: 20 }}
+							transition={{ duration: 0.3, ease: "easeOut" }}
+							className='bg-white rounded-xl p-6 w-full max-w-md shadow-2xl'
 							onClick={(e) => e.stopPropagation()}
 						>
-							<div className='flex items-center justify-between mb-4'>
-								<h3 className='text-lg font-semibold text-gray-900'>
-									Author
+							<div className='flex items-center justify-between mb-6'>
+								<h3 className='text-xl font-bold text-gray-900'>
+									About the Author
 								</h3>
 								<button
-									onClick={() => setShowMobile(false)}
-									className='p-1 rounded-full hover:bg-gray-100 transition-colors'
+									onClick={() => setShowPopup(false)}
+									className='p-2 rounded-full hover:bg-gray-100 transition-colors duration-200'
 								>
-									<Icon icon='lucide:x' width={20} height={20} />
+									<Icon
+										icon='lucide:x'
+										width={20}
+										height={20}
+										className='text-gray-500'
+									/>
 								</button>
 							</div>
 
 							<div className='flex items-start gap-4'>
 								{author.image && (
-									<div className='relative w-16 h-16 rounded-full overflow-hidden flex-shrink-0'>
+									<div className='relative w-20 h-20 rounded-full overflow-hidden flex-shrink-0 ring-4 ring-primary-red/10'>
 										<Image
 											src={urlFor(author.image)
-												.width(64)
-												.height(64)
+												.width(80)
+												.height(80)
 												.url()}
 											alt={author.name}
 											fill
@@ -136,11 +94,21 @@ const AuthorHoverCard = ({
 									</div>
 								)}
 								<div className='flex-1 min-w-0'>
-									<h4 className='font-semibold text-gray-900 mb-2'>
+									<h4 className='text-lg font-bold text-gray-900 mb-3'>
 										{author.name}
 									</h4>
 									{renderBio("text-gray-600 text-sm leading-relaxed")}
 								</div>
+							</div>
+
+							{/* Optional: Add social links or other author info here */}
+							<div className='mt-6 pt-4 border-t border-gray-100'>
+								<button
+									onClick={() => setShowPopup(false)}
+									className='w-full bg-primary-red text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors duration-200 font-medium'
+								>
+									Close
+								</button>
 							</div>
 						</motion.div>
 					</motion.div>
@@ -417,13 +385,13 @@ const PostClient = ({ post }: PostClientProps) => {
 								)}
 							</div>
 
-							{/* Author with Hover Card */}
+							{/* Author with Popup */}
 							{post.author && (
 								<div className='pb-6 border-b border-gray-200'>
-									<AuthorHoverCard author={post.author}>
-										<div className='flex items-center gap-4 cursor-pointer'>
+									<AuthorPopup author={post.author}>
+										<div className='flex items-center gap-4 cursor-pointer group'>
 											{post.author.image && (
-												<div className='relative w-12 h-12 rounded-full overflow-hidden'>
+												<div className='relative w-12 h-12 rounded-full overflow-hidden group-hover:ring-4 group-hover:ring-primary-red/20 transition-all duration-200'>
 													<Image
 														src={urlFor(post.author.image)
 															.width(48)
@@ -436,15 +404,21 @@ const PostClient = ({ post }: PostClientProps) => {
 												</div>
 											)}
 											<div>
-												<p className='font-semibold text-gray-900 hover:text-primary-red transition-colors'>
+												<p className='font-semibold text-gray-900 group-hover:text-primary-red transition-colors duration-200'>
 													{post.author.name}
 												</p>
-												<p className='text-sm text-gray-600'>
+												<p className='text-sm text-gray-600 group-hover:text-gray-800 transition-colors duration-200'>
 													Click to view profile
 												</p>
 											</div>
+											<Icon
+												icon='lucide:info'
+												width={16}
+												height={16}
+												className='text-gray-400 group-hover:text-primary-red transition-colors duration-200'
+											/>
 										</div>
-									</AuthorHoverCard>
+									</AuthorPopup>
 								</div>
 							)}
 						</header>
