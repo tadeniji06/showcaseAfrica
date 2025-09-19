@@ -86,12 +86,12 @@ const Footer = () => {
 						<p>
 							Developed by{" "}
 							<Link
-								href='https://olutunmise.vercel.app/'
+								href='https://tech360online.com'
 								target='_blank'
 								rel='noopener noreferrer'
 								className='text-white hover:underline font-medium transition-colors duration-200'
 							>
-								Olutunmise
+								Btech360
 							</Link>
 						</p>
 					</div>
