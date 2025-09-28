@@ -7,39 +7,45 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 // YouTube video data based on your links
 const youtubeVideos = [
 	{
-		id: "fGS785na8g4",
+		id: "pQeEJKZx7v4",
 		title:
-			"Showcase Africa TV – Episode 4 | Unlocking Opportunities Across Africa",
-		description: `Episode 4 of Showcase Africa TV takes you inside Africa’s dynamic industries and creative spaces, showing how innovation, culture, and business are driving the continent forward.
+			"Showcase Africa TV – Episode 7 | Growing Across Multiple Businesses",
+		description: `Episode 7 of Showcase Africa TV.
 
 			In this episode, we explore the realities and opportunities shaping Africa today insights you won’t want to miss.`,
-		thumbnail: `https://img.youtube.com/vi/fGS785na8g4/maxresdefault.jpg`,
-		duration: "28:45",
-		publishedDate: "August 2025",
-		views: "12K",
+		thumbnail: `https://img.youtube.com/vi/pQeEJKZx7v4/maxresdefault.jpg`,
+		duration: "55:21",
+		publishedDate: "Sept 2025",
+		views: "11",
 		featured: true,
 	},
 	{
-		id: "KqzDZ_Fz4C0",
-		title:
-			"Nigeria to South Africa,Victoria Adasonla’s Journey in Business /African Business showcase Ep.3",
-		description:
-			"In this episode of African Business Showcase, we sit with Victoria Adesola, a Nigerian businesswoman making waves in South Africa. She opens up about the realities of running a business across borders and why social entrepreneurship is more than just profit it’s about creating impact that lasts. ",
-		thumbnail: `https://img.youtube.com/vi/KqzDZ_Fz4C0/maxresdefault.jpg`,
-		duration: "50:20",
-		publishedDate: "July 2025",
-		views: "8.5K",
+		id: "-khslByOq3A",
+		title: "ZPod Episode 2 | Gen Z & Religion",
+		description: "GenZ discuss religion",
+		// https://youtu.be/-?si=AWfYYDkKirwY6bcx
+		thumbnail: `https://img.youtube.com/vi/-khslByOq3A/maxresdefault.jpg`,
+		duration: "43:20",
+		publishedDate: "Sept 2025",
+		views: "12",
 	},
 	{
-		id: "Ef5uu0IHg-s",
-		title:
-			"Showcase Africa Podcast Ep.2 /Lea Abvajee on Growing& Building a Business in Africa",
-		description:
-			"In this episode of Showcase Africa, we sit down with Lea Abvajee,influencer, entrepreneur, and inspiring businesswoman, as she shares her journey of growth and how she transformed her passion into a thriving brand and business.",
-		thumbnail: `https://img.youtube.com/vi/Ef5uu0IHg-s/maxresdefault.jpg`,
+		id: "YP89WP_i8ak",
+		title: "ZPod Episode 1 - GenZ on Love, Relationships & Marriage.",
+		description: "GenZ on Love, Relationships & Marriage.",
+		thumbnail: `https://img.youtube.com/vi/YP89WP_i8ak/maxresdefault.jpg`,
 		duration: "42:15",
-		publishedDate: "June 2025",
-		views: "15K",
+		publishedDate: "Sept 2025",
+		views: "80",
+	},
+	{
+		id: "x709QKVfFRA",
+		title: "Medicine to business - Dr Olufemi Seyi",
+		description: "Journey into Real Estate & Finance - Africa",
+		thumbnail: `https://img.youtube.com/vi/x709QKVfFRA/maxresdefault.jpg`,
+		duration: "42:15",
+		publishedDate: "Sept 2025",
+		views: "30",
 	},
 	{
 		id: "pDG_Ufh1bU0",
@@ -50,7 +56,7 @@ const youtubeVideos = [
 		thumbnail: `https://img.youtube.com/vi/pDG_Ufh1bU0/maxresdefault.jpg`,
 		duration: "31:30",
 		publishedDate: "May 2025",
-		views: "11K",
+		views: "120",
 	},
 ];
 
