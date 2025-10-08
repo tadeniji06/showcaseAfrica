@@ -147,3 +147,11 @@ export const getCategories = async (): Promise<Category[]> => {
 
 	return await client.fetch(query);
 };
+
+export const getBlogPostsForSitemap = async () => {
+	const query = `*[_type == "post"] | order(publishedAt desc) {
+    slug,
+    publishedAt
+  }`;
+	return await client.fetch(query);
+};
