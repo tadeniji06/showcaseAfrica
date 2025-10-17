@@ -12,6 +12,7 @@ import i5 from "./i5.png";
 import p1 from "./podcast 1.png";
 import p2 from "./podcast 2.png";
 import pod from "./pod.jpg";
+import savm from "./savm.png";
 
 import bizz from "./bizz.jpg";
 import culture from "./culture.jpg";
@@ -23,6 +24,7 @@ export {
 	logo,
 	hero,
 	bot,
+	savm,
 	scape,
 	dro,
 	mag,

@@ -60,7 +60,7 @@ const page = () => {
 	return (
 		<>
 			<MagazineHero />
-      <MagazineBody />
+			{/* <MagazineBody /> */}
 		</>
 	);
 };
