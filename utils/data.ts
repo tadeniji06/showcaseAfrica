@@ -16,10 +16,10 @@ export const headerLinks = [
 		title: "Entertainment",
 		link: "/posts",
 	},
-	{
-		title: "Magazines",
-		link: "/magazines",
-	},
+	// {
+	// 	title: "Magazines",
+	// 	link: "/magazines",
+	// },
 	{
 		title: "Vodcasts",
 		link: "/podcasts",
