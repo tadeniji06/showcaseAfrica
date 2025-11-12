@@ -28,7 +28,7 @@ const Posts = () => {
 			try {
 				setLoading(true);
 				const [postsData, categoriesData] = await Promise.all([
-					getBlogPosts(50),
+					getBlogPosts(5000),
 					getCategories(),
 				]);
 				setPosts(postsData);
