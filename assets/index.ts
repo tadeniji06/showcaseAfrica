@@ -13,6 +13,7 @@ import p1 from "./podcast 1.png";
 import p2 from "./podcast 2.png";
 import pod from "./pod.jpg";
 import savm from "./savm.png";
+import saMag from './saMag.png';
 
 import bizz from "./bizz.jpg";
 import culture from "./culture.jpg";
@@ -23,6 +24,7 @@ import travel from "./travel.jpg";
 export {
 	logo,
 	hero,
+	saMag,
 	bot,
 	savm,
 	scape,

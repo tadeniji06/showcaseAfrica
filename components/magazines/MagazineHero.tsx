@@ -1,4 +1,4 @@
-import { savm } from "@/assets";
+import { saMag, savm } from "@/assets";
 import Image from "next/image";
 
 const MagazineHero = () => {
@@ -8,7 +8,7 @@ const MagazineHero = () => {
 				{/* Left: Magazine Cover */}
 				<div className='flex justify-center'>
 					<Image
-						src={savm}
+						src={saMag}
 						alt='Magazine Cover'
 						className='w-full max-w-sm h-auto rounded-xl shadow-lg object-cover'
 					/>
@@ -32,7 +32,7 @@ const MagazineHero = () => {
 
 					{/* Download Button */}
 					<a
-						href='/showcaseMagazine.pdf'
+						href='/SAmagazine.pdf'
 						download='Showcase_Africa_Magazine_October_2025.pdf'
 						className='self-start bg-primary-red text-white px-6 py-3 rounded-lg font-medium shadow-sm hover:bg-red-600 transition'
 					>
