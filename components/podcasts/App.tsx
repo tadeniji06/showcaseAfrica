@@ -5,38 +5,55 @@ import Image from "next/image";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
 // YouTube video data based on your links
+// https://youtu.be/?si=906jCr038Ac318A3
+// https://youtu.be/?si=jCjAmZUTUP9tNDOI
 const youtubeVideos = [
 	{
-		id: "pQeEJKZx7v4",
+		id: "NF-9wOlyKBQ",
 		title:
-			"Showcase Africa TV – Episode 7 | Growing Across Multiple Businesses",
-		description: `Episode 7 of Showcase Africa TV.
-
-			In this episode, we explore the realities and opportunities shaping Africa today insights you won’t want to miss.`,
-		thumbnail: `https://img.youtube.com/vi/pQeEJKZx7v4/maxresdefault.jpg`,
+			"SPECIAL EDITION: Q&A on Sales With Dr. Damilola Olanrewaju | African Business Showcase",
+		description: `This special edition of the African Business Showcase features a full Q&A session with Dr. Damilola Olanrewaju, where we dive deep into the real issues surrounding sales in today’s African business landscape.
+From handling rejection to building trust, structuring your sales process, managing clients, and understanding what truly drives conversion, Dr. Olanrewaju breaks everything down with clarity and experience.`,
+		thumbnail: `https://img.youtube.com/vi/NF-9wOlyKBQ/maxresdefault.jpg`,
 		duration: "55:21",
-		publishedDate: "Sept 2025",
-		views: "11",
+		publishedDate: "November 2025",
+		views: "15",
 		featured: true,
 	},
 	{
-		id: "-khslByOq3A",
-		title: "ZPod Episode 2 | Gen Z & Religion",
-		description: "GenZ discuss religion",
+		id: "SPfe62kLj0k",
+		title:
+			"ZPod Episode 8 | Hustle Culture vs Real Life: Is Work–Life Balance Even Real?",
+		description:
+			"HUSTLE CULTURE. WORK. LIFE. BALANCE. Does it exist, or is it just another scam adults sold us?",
 		// https://youtu.be/-?si=AWfYYDkKirwY6bcx
-		thumbnail: `https://img.youtube.com/vi/-khslByOq3A/maxresdefault.jpg`,
+		thumbnail: `https://img.youtube.com/vi/SPfe62kLj0k/maxresdefault.jpg`,
 		duration: "43:20",
-		publishedDate: "Sept 2025",
+		publishedDate: "November 2025",
 		views: "12",
 	},
+	// https://youtu.be/?si=MwQdnzH5KlDUnqXv
 	{
-		id: "YP89WP_i8ak",
-		title: "ZPod Episode 1 - GenZ on Love, Relationships & Marriage.",
-		description: "GenZ on Love, Relationships & Marriage.",
-		thumbnail: `https://img.youtube.com/vi/YP89WP_i8ak/maxresdefault.jpg`,
+		id: "RDlDm43S6CY",
+		title: "ZPod Episode 7 - GenZ on Love, Relationships & Marriage.",
+		description:
+			"Why do people judge women and men differently for the same choices?Who created these “standards,” and why do they still exist in 2025?",
+		thumbnail: `https://img.youtube.com/vi/RDlDm43S6CY/maxresdefault.jpg`,
 		duration: "42:15",
-		publishedDate: "Sept 2025",
+		publishedDate: "November 2025",
 		views: "80",
+	},
+	// https://youtu.be/?si=ytAdmu1S7PFtZMtQ
+	{
+		id: "Vn-HfUOdSaU",
+		title:
+			"Mrs. Ijeoma: Building a Brand as a Woman in Nigeria | The African Business Showcase Ep. 10",
+		description:
+			"In this inspiring episode of The African Business Showcase, we sit with Mrs. Ijeoma, the CEO of IGM Global Limited, as she shares her journey of building a thriving brand in Nigeria’s competitive business landscape.",
+		thumbnail: `https://img.youtube.com/vi/Vn-HfUOdSaU/maxresdefault.jpg`,
+		duration: "42:15",
+		publishedDate: "October 2025",
+		views: "30",
 	},
 	{
 		id: "x709QKVfFRA",
