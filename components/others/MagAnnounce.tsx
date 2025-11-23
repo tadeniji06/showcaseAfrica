@@ -54,7 +54,7 @@ const MagAnnounce = () => {
 
 					{/* CTA Button */}
 					<Link
-						href="#magazine"
+						href="/magazines"
 						onClick={() => setOpen(false)}
 						className="bg-primary-red text-white text-center py-2 rounded-lg text-sm font-medium hover:bg-red-700 transition"
 					>
