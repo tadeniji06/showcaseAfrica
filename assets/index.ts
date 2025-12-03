@@ -13,7 +13,7 @@ import p1 from "./podcast 1.png";
 import p2 from "./podcast 2.png";
 import pod from "./pod.jpg";
 import savm from "./savm.png";
-import saMag from './saMag.png';
+import saMag from "./saMag.png";
 
 import bizz from "./bizz.jpg";
 import culture from "./culture.jpg";
@@ -21,6 +21,7 @@ import ent from "./ent.jpg";
 import politics from "./politics.jpg";
 import sports from "./sports.jpg";
 import travel from "./travel.jpg";
+import sabanner from "./sabanner.jpg";
 export {
 	logo,
 	hero,
@@ -44,4 +45,5 @@ export {
 	politics,
 	sports,
 	travel,
+	sabanner,
 };
