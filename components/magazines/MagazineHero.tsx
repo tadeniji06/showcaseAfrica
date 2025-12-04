@@ -12,7 +12,7 @@ const MagazineHero = () => {
 	return (
 		<section className='min-h-screen bg-slate-100 flex items-center mb-5'>
 			<div className='max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-10 items-center'>
-				{/* Left: Magazine Cover */}
+				{/* Cover */}
 				<div className='flex justify-center'>
 					<Image
 						src={saMag}
@@ -21,7 +21,7 @@ const MagazineHero = () => {
 					/>
 				</div>
 
-				{/* Right: Content */}
+				{/* Right side */}
 				<div className='flex flex-col gap-6'>
 					<h2 className='text-3xl md:text-4xl font-bold text-gray-900'>
 						October 2025
@@ -32,12 +32,11 @@ const MagazineHero = () => {
 					</span>
 
 					<p className='text-gray-700 leading-relaxed'>
-						Discover Africa through its vibrant blend of culture,
-						innovation, and creativity — from entertainment and
-						entrepreneurship to fashion, tech, and beyond.
+						Discover Africa through its vibrant mix of culture,
+						innovation, entrepreneurship, fashion, tech and beyond.
 					</p>
 
-					{/* Download Button */}
+					{/* Button */}
 					<button
 						onClick={() => setShowForm(true)}
 						disabled={allowed}
@@ -48,7 +47,7 @@ const MagazineHero = () => {
 						Subscribe to Download
 					</button>
 
-					{/* Actual download button (only unlocked after subscription) */}
+					{/* Download unlocked */}
 					{allowed && (
 						<a
 							href='/SAmagazine.pdf'

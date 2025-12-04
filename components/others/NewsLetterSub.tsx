@@ -1,91 +1,104 @@
 "use client";
+
 import { useState } from "react";
 
-const NewsLetterSub = ({ onComplete, onClose }) => {
-	const [form, setForm] = useState({
-		name: "",
-		email: "",
-		phone: "",
-		country: "",
-	});
+interface Props {
+	onComplete: () => void;
+	onClose: () => void;
+}
 
-	const handleChange = (e) => {
-		setForm({ ...form, [e.target.name]: e.target.value });
-	};
+const NewsLetterSub = ({ onComplete, onClose }: Props) => {
+	const [name, setName] = useState("");
+	const [email, setEmail] = useState("");
+	const [country, setCountry] = useState("");
+	const [phone, setPhone] = useState("");
+	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState("");
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
+	const submitForm = async () => {
+		try {
+			setLoading(true);
+			setError("");
 
-		// simple validation
-		if (!form.name || !form.email || !form.phone || !form.country)
-			return;
+			const res = await fetch("/api/subscribe", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					name,
+					email,
+					country,
+					phone,
+				}),
+			});
 
-		onComplete(); // unlock the download button
-		onClose(); // close modal
+			if (!res.ok) throw new Error("Failed to submit");
+
+			onComplete();
+			onClose();
+		} catch (err) {
+			setError("Something went wrong. Try again.");
+		} finally {
+			setLoading(false);
+		}
 	};
 
 	return (
-		<div className='fixed inset-0 bg-black/50 flex items-center justify-center z-50'>
-			<div className='bg-white p-6 rounded-xl w-full max-w-md shadow-lg'>
-				<h3 className='text-xl font-semibold mb-4'>
+		<div className='fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center px-4'>
+			<div className='bg-white p-6 rounded-lg w-full max-w-md shadow-xl space-y-4'>
+				<h3 className='text-xl font-semibold'>
 					Subscribe to Download
 				</h3>
 
-				<form className='flex flex-col gap-4' onSubmit={handleSubmit}>
-					<input
-						name='name'
-						placeholder='Full Name'
-						className='border p-2 rounded'
-						value={form.name}
-						onChange={handleChange}
-						required
-					/>
+				<input
+					type='text'
+					className='w-full border p-2 rounded'
+					placeholder='Your name'
+					value={name}
+					onChange={(e) => setName(e.target.value)}
+				/>
 
-					<input
-						name='email'
-						type='email'
-						placeholder='Email Address'
-						className='border p-2 rounded'
-						value={form.email}
-						onChange={handleChange}
-						required
-					/>
+				<input
+					type='email'
+					className='w-full border p-2 rounded'
+					placeholder='Your email'
+					value={email}
+					onChange={(e) => setEmail(e.target.value)}
+				/>
 
-					<input
-						name='phone'
-						placeholder='Phone Number'
-						className='border p-2 rounded'
-						value={form.phone}
-						onChange={handleChange}
-						required
-					/>
+				<input
+					type='text'
+					className='w-full border p-2 rounded'
+					placeholder='Your country'
+					value={country}
+					onChange={(e) => setCountry(e.target.value)}
+				/>
 
-					<input
-						name='country'
-						placeholder='Country of Residence'
-						className='border p-2 rounded'
-						value={form.country}
-						onChange={handleChange}
-						required
-					/>
+				<input
+					type='text'
+					className='w-full border p-2 rounded'
+					placeholder='Phone Number'
+					value={phone}
+					onChange={(e) => setPhone(e.target.value)}
+				/>
 
-					<div className='flex justify-end gap-3 mt-2'>
-						<button
-							type='button'
-							onClick={onClose}
-							className='px-4 py-2 bg-gray-300 rounded'
-						>
-							Cancel
-						</button>
+				{error && <p className='text-red-500 text-sm'>{error}</p>}
 
-						<button
-							type='submit'
-							className='px-4 py-2 bg-red-600 text-white rounded'
-						>
-							Submit
-						</button>
-					</div>
-				</form>
+				<button
+					onClick={submitForm}
+					disabled={loading}
+					className='w-full bg-primary-red text-white py-2 rounded-lg font-medium hover:bg-red-600 transition'
+				>
+					{loading ? "Submitting..." : "Submit"}
+				</button>
+
+				<button
+					onClick={onClose}
+					className='w-full text-gray-600 text-sm mt-2'
+				>
+					Cancel
+				</button>
 			</div>
 		</div>
 	);
