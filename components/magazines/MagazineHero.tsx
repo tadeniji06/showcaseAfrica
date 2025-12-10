@@ -50,7 +50,7 @@ const MagazineHero = () => {
 					{/* Download unlocked */}
 					{allowed && (
 						<a
-							href='/SAmagazine.pdf'
+							href='/showcase_africa_vol1_issue1.pdf'
 							download='Showcase_Africa_Magazine_October_2025.pdf'
 							className='self-start bg-green-600 text-white px-6 py-3 rounded-lg font-medium shadow-sm hover:bg-green-700 transition'
 						>
