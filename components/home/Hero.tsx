@@ -4,7 +4,7 @@ import { getBlogPosts, urlFor, BlogPost } from "@/utils/sanity";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Icon } from "@iconify/react/dist/iconify.js";
+import { Icon } from "@iconify/react";
 import { useEffect, useState } from "react";
 import HeroBanner from "../HeroBanner";
 
@@ -14,6 +14,7 @@ const Hero = () => {
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
+	// FETCH POSTS
 	useEffect(() => {
 		const fetchPosts = async () => {
 			try {
@@ -30,6 +31,7 @@ const Hero = () => {
 		fetchPosts();
 	}, []);
 
+	// AUTOPLAY
 	useEffect(() => {
 		if (!isAutoPlaying || posts.length <= 1) return;
 
@@ -40,6 +42,7 @@ const Hero = () => {
 		return () => clearInterval(interval);
 	}, [posts.length, isAutoPlaying]);
 
+	// HELPERS
 	const formatDate = (dateString: string) =>
 		new Date(dateString).toLocaleDateString("en-US", {
 			year: "numeric",
@@ -52,17 +55,15 @@ const Hero = () => {
 
 		return body
 			.filter((block) => block._type === "block")
-			.map((block) => {
-				if (block.children && Array.isArray(block.children)) {
-					return block.children
-						.filter(
+			.map(
+				(block) =>
+					block.children
+						?.filter(
 							(child: any) => child._type === "span" && child.text
 						)
 						.map((child: any) => child.text)
-						.join("");
-				}
-				return "";
-			})
+						.join("") || ""
+			)
 			.join(" ")
 			.trim();
 	};
@@ -71,14 +72,11 @@ const Hero = () => {
 		const fullText = extractTextFromPortableText(body);
 		if (fullText.length <= maxLength) return fullText;
 
-		const truncated = fullText.substring(0, maxLength);
-		const lastSpaceIndex = truncated.lastIndexOf(" ");
-
-		if (lastSpaceIndex > 0) {
-			return truncated.substring(0, lastSpaceIndex) + "...";
-		}
-
-		return truncated + "...";
+		const short = fullText.substring(0, maxLength);
+		const lastSpace = short.lastIndexOf(" ");
+		return (
+			(lastSpace > 0 ? short.substring(0, lastSpace) : short) + "..."
+		);
 	};
 
 	const goToSlide = (index: number) => {
@@ -101,253 +99,245 @@ const Hero = () => {
 		setTimeout(() => setIsAutoPlaying(true), 10000);
 	};
 
+	// LOADING STATE
 	if (loading) {
 		return (
-			<section className='relative h-[80vh] bg-gradient-to-br from-gray-100 to-gray-200'>
-				<div className='absolute inset-0 flex items-center justify-center'>
-					<div className='animate-spin rounded-full h-16 w-16 border-b-4 border-primary-red' />
-				</div>
-			</section>
+			<>
+				<HeroBanner />
+				<section className='relative h-[80vh] bg-gradient-to-br from-gray-100 to-gray-200'>
+					<div className='absolute inset-0 flex items-center justify-center'>
+						<div className='animate-spin rounded-full h-16 w-16 border-b-4 border-primary-red' />
+					</div>
+				</section>
+			</>
 		);
 	}
 
+	// NO POSTS
 	if (posts.length === 0) {
 		return (
-			<section className='relative h-[80vh] bg-gradient-to-br from-primary-red/10 to-primary-red/20 flex items-center justify-center'>
-				<div className='text-center'>
-					<h1 className='text-4xl md:text-6xl font-bold text-primary-red mb-4'>
-						Stories That Shape Africa
-					</h1>
-					<p className='text-xl text-gray-600 max-w-2xl mx-auto'>
-						Bringing you authentic voices, compelling narratives, and
-						insightful analysis.
-					</p>
-				</div>
-			</section>
+			<>
+				<HeroBanner />
+				<section className='relative h-[80vh] bg-gradient-to-br from-primary-red/10 to-primary-red/20 flex items-center justify-center'>
+					<div className='text-center'>
+						<h1 className='text-4xl md:text-6xl font-bold text-primary-red mb-4'>
+							Stories That Shape Africa
+						</h1>
+						<p className='text-xl text-gray-600 max-w-2xl mx-auto'>
+							Bringing you authentic voices, compelling narratives,
+							and insightful analysis.
+						</p>
+					</div>
+				</section>
+			</>
 		);
 	}
 
+	// MAIN POST
 	const currentPost = posts[currentIndex];
-
-	// === FIX: normalize categories to a safe array to avoid "possibly undefined" TS error ===
 	const categories = currentPost.categories ?? [];
 
+	// MAIN HERO
 	return (
-		<section className='relative h-[85vh] min-h-[600px] overflow-hidden bg-black'>
-			{/* Desktop-Only Hero Banner Overlay */}
+		<>
+			{/* Banner - Clean separation from hero */}
 			<HeroBanner />
 
-			{/* Background Image */}
-			<AnimatePresence mode='wait'>
-				<motion.div
-					key={currentPost._id}
-					initial={{ opacity: 0, scale: 1.1 }}
-					animate={{ opacity: 1, scale: 1 }}
-					exit={{ opacity: 0, scale: 0.95 }}
-					transition={{ duration: 0.8, ease: "easeInOut" }}
-					className='absolute inset-0'
-				>
-					{currentPost.mainImage && (
-						<Image
-							src={urlFor(currentPost.mainImage)
-								.width(1920)
-								.height(1080)
-								.url()}
-							alt={currentPost.title}
-							fill
-							className='object-cover'
-							priority
-							sizes='100vw'
-						/>
-					)}
+			{/* Hero Section - Starts immediately after banner */}
+			<section className='relative h-[85vh] min-h-[600px] overflow-hidden bg-black'>
+				{/* BACKGROUND IMAGE */}
+				<AnimatePresence mode='wait'>
+					<motion.div
+						key={currentPost._id}
+						initial={{ opacity: 0, scale: 1.1 }}
+						animate={{ opacity: 1, scale: 1 }}
+						exit={{ opacity: 0, scale: 0.95 }}
+						transition={{ duration: 0.8, ease: "easeInOut" }}
+						className='absolute inset-0'
+					>
+						{currentPost.mainImage && (
+							<Image
+								src={urlFor(currentPost.mainImage)
+									.width(1600)
+									.height(900)
+									.url()}
+								alt={currentPost.title}
+								fill
+								className='object-cover'
+								sizes='100vw'
+								priority
+							/>
+						)}
 
-					<div className='absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent' />
-					<div className='absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent' />
-				</motion.div>
-			</AnimatePresence>
+						{/* GRADIENT OVERLAYS */}
+						<div className='absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent' />
+						<div className='absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent' />
+					</motion.div>
+				</AnimatePresence>
 
-			{/* CONTENT */}
-			<div className='relative z-10 h-full flex items-center'>
-				<div className='max-w-7xl mx-auto px-6 lg:px-12 w-full'>
-					<div className='max-w-3xl'>
-						<AnimatePresence mode='wait'>
-							<motion.div
-								key={currentPost._id}
-								initial={{ opacity: 0, y: 30 }}
-								animate={{ opacity: 1, y: 0 }}
-								exit={{ opacity: 0, y: -30 }}
-								transition={{ duration: 0.6, delay: 0.2 }}
-							>
-								{/* Categories (fixed: using normalized `categories` array) */}
-								{categories.length > 0 && (
-									<div className='flex flex-wrap gap-3 mb-6'>
-										{categories.slice(0, 2).map((category) => (
-											<span
-												key={category._id}
-												className='px-4 py-2 bg-primary-red/90 text-white text-sm font-semibold rounded-full backdrop-blur-sm'
-											>
-												{category.title}
-											</span>
-										))}
-									</div>
-								)}
-
-								{/* Title */}
-								<h1 className='text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight'>
-									{currentPost.title}
-								</h1>
-
-								{/* Excerpt */}
-								{currentPost.body?.length > 0 && (
-									<p className='text-lg md:text-xl text-white/90 mb-8 leading-relaxed max-w-2xl'>
-										{createExcerpt(currentPost.body)}
-									</p>
-								)}
-
-								{/* Meta */}
-								<div className='flex items-center gap-6 mb-8 text-white/80'>
-									<time className='flex items-center gap-2'>
-										<Icon
-											icon='lucide:calendar'
-											width={18}
-											height={18}
-										/>
-										{formatDate(currentPost.publishedAt)}
-									</time>
-
-									{currentPost.estimatedReadingTime > 0 && (
-										<span className='flex items-center gap-2'>
-											<Icon
-												icon='lucide:clock'
-												width={18}
-												height={18}
-											/>
-											{currentPost.estimatedReadingTime} min read
-										</span>
-									)}
-
-									{currentPost.author && (
-										<span className='flex items-center gap-2'>
-											<Icon
-												icon='lucide:user'
-												width={18}
-												height={18}
-											/>
-											{currentPost.author.name}
-										</span>
-									)}
-								</div>
-
-								{/* CTA */}
-								<Link
-									href={`/posts/${currentPost.slug.current}`}
-									className='inline-flex items-center gap-3 bg-primary-red hover:bg-primary-red/90 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-xl'
+				{/* CONTENT */}
+				<div className='relative z-10 h-full flex items-center'>
+					<div className='max-w-7xl mx-auto px-6 lg:px-12 w-full'>
+						<div className='max-w-3xl'>
+							<AnimatePresence mode='wait'>
+								<motion.div
+									key={currentPost._id}
+									initial={{ opacity: 0, y: 30 }}
+									animate={{ opacity: 1, y: 0 }}
+									exit={{ opacity: 0, y: -30 }}
+									transition={{ duration: 0.6, delay: 0.2 }}
 								>
-									Read Full Story
-									<Icon
-										icon='lucide:arrow-right'
-										width={20}
-										height={20}
-									/>
-								</Link>
-							</motion.div>
-						</AnimatePresence>
+									{/* CATEGORIES */}
+									{categories.length > 0 && (
+										<div className='flex flex-wrap gap-3 mb-6'>
+											{categories.slice(0, 2).map((category) => (
+												<span
+													key={category._id}
+													className='px-4 py-2 bg-primary-red/90 text-white text-sm font-semibold rounded-full'
+												>
+													{category.title}
+												</span>
+											))}
+										</div>
+									)}
+
+									{/* TITLE */}
+									<h1 className='text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight'>
+										{currentPost.title}
+									</h1>
+
+									{/* EXCERPT */}
+									{currentPost.body?.length > 0 && (
+										<p className='text-lg md:text-xl text-white/90 mb-8 leading-relaxed max-w-2xl'>
+											{createExcerpt(currentPost.body)}
+										</p>
+									)}
+
+									{/* META */}
+									<div className='flex items-center gap-6 mb-8 text-white/80'>
+										<time className='flex items-center gap-2'>
+											<Icon
+												icon='lucide:calendar'
+												width={18}
+												height={18}
+											/>
+											{formatDate(currentPost.publishedAt)}
+										</time>
+
+										{currentPost.estimatedReadingTime > 0 && (
+											<span className='flex items-center gap-2'>
+												<Icon
+													icon='lucide:clock'
+													width={18}
+													height={18}
+												/>
+												{currentPost.estimatedReadingTime} min read
+											</span>
+										)}
+
+										{currentPost.author && (
+											<span className='flex items-center gap-2'>
+												<Icon
+													icon='lucide:user'
+													width={18}
+													height={18}
+												/>
+												{currentPost.author.name}
+											</span>
+										)}
+									</div>
+
+									{/* CTA */}
+									<Link
+										href={`/posts/${currentPost.slug.current}`}
+										className='inline-flex items-center gap-3 bg-primary-red hover:bg-primary-red/90 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-xl'
+									>
+										Read Full Story
+										<Icon
+											icon='lucide:arrow-right'
+											width={20}
+											height={20}
+										/>
+									</Link>
+								</motion.div>
+							</AnimatePresence>
+						</div>
 					</div>
 				</div>
-			</div>
 
-			{/* NAV CONTROLS (unchanged) */}
-			{posts.length > 1 && (
-				<>
-					<button
-						onClick={prevSlide}
-						className='absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-20 bg-black/30 hover:bg-black/50 text-white p-3 rounded-full transition-all duration-300 backdrop-blur-sm'
-					>
-						<Icon icon='lucide:chevron-left' width={24} height={24} />
-					</button>
-
-					<button
-						onClick={nextSlide}
-						className='absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-20 bg-black/30 hover:bg-black/50 text-white p-3 rounded-full transition-all duration-300 backdrop-blur-sm'
-					>
-						<Icon
-							icon='lucide:chevron-right'
-							width={24}
-							height={24}
-						/>
-					</button>
-
-					<div className='absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-3'>
-						{posts.map((_, index) => (
-							<button
-								key={index}
-								onClick={() => goToSlide(index)}
-								className={`w-3 h-3 rounded-full transition-all ${
-									index === currentIndex
-										? "bg-white scale-125"
-										: "bg-white/40"
-								}`}
+				{/* SLIDER CONTROLS */}
+				{posts.length > 1 && (
+					<>
+						<button
+							onClick={prevSlide}
+							className='absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-20 bg-black/30 hover:bg-black/50 text-white p-3 rounded-full backdrop-blur-sm transition-all'
+							aria-label='Previous slide'
+						>
+							<Icon
+								icon='lucide:chevron-left'
+								width={24}
+								height={24}
 							/>
-						))}
-					</div>
+						</button>
 
-					<div className='absolute bottom-0 left-0 right-0 z-20 h-1 bg-black/20'>
-						<motion.div
-							className='h-full bg-primary-red'
-							initial={{ width: "0%" }}
-							animate={{ width: isAutoPlaying ? "100%" : "0%" }}
-							transition={{
-								duration: isAutoPlaying ? 5 : 0,
-								ease: "linear",
-								repeat: isAutoPlaying ? Infinity : 0,
-							}}
-							key={`progress-${currentIndex}-${isAutoPlaying}`}
-						/>
-					</div>
+						<button
+							onClick={nextSlide}
+							className='absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-20 bg-black/30 hover:bg-black/50 text-white p-3 rounded-full backdrop-blur-sm transition-all'
+							aria-label='Next slide'
+						>
+							<Icon
+								icon='lucide:chevron-right'
+								width={24}
+								height={24}
+							/>
+						</button>
 
-					<div className='absolute bottom-20 right-8 z-20 hidden lg:flex flex-col gap-2 max-w-xs'>
-						{posts.slice(0, 3).map((post, index) => (
-							<button
-								key={post._id}
-								onClick={() => goToSlide(index)}
-								className={`flex items-center gap-3 bg-black/40 hover:bg-black/60 backdrop-blur-sm rounded-lg p-3 transition-all ${
-									index === currentIndex
-										? "ring-2 ring-primary-red"
-										: ""
-								}`}
-							>
-								{post.mainImage && (
-									<div className='w-12 h-8 relative rounded overflow-hidden'>
-										<Image
-											src={urlFor(post.mainImage)
-												.width(60)
-												.height(40)
-												.url()}
-											alt={post.title}
-											fill
-											className='object-cover'
-										/>
-									</div>
-								)}
-								<span className='text-white text-sm font-medium truncate'>
-									{post.title}
-								</span>
-							</button>
-						))}
-					</div>
-				</>
-			)}
+						{/* DOTS */}
+						<div className='absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-3'>
+							{posts.map((_, index) => (
+								<button
+									key={index}
+									onClick={() => goToSlide(index)}
+									className={`w-3 h-3 rounded-full transition-all ${
+										index === currentIndex
+											? "bg-white scale-125"
+											: "bg-white/40 hover:bg-white/60"
+									}`}
+									aria-label={`Go to slide ${index + 1}`}
+								/>
+							))}
+						</div>
 
-			{/* Scroll Indication */}
-			<motion.div
-				className='absolute bottom-8 left-8 z-20 flex items-center gap-2 text-white/60'
-				animate={{ y: [0, 10, 0] }}
-				transition={{ duration: 2, repeat: Infinity }}
-			>
-				<span className='text-sm font-medium'>Scroll for more</span>
-				<Icon icon='lucide:chevron-down' width={20} height={20} />
-			</motion.div>
-		</section>
+						{/* PROGRESS BAR */}
+						<div className='absolute bottom-0 left-0 right-0 z-20 h-1 bg-black/20'>
+							<motion.div
+								className='h-full bg-primary-red'
+								initial={{ width: "0%" }}
+								animate={{
+									width: isAutoPlaying ? "100%" : "0%",
+								}}
+								transition={{
+									duration: isAutoPlaying ? 5 : 0,
+									ease: "linear",
+									repeat: isAutoPlaying ? Infinity : 0,
+								}}
+								key={`progress-${currentIndex}-${isAutoPlaying}`}
+							/>
+						</div>
+					</>
+				)}
+
+				{/* SCROLL HINT */}
+				<motion.div
+					className='absolute bottom-8 left-8 z-20 flex items-center gap-2 text-white/60'
+					animate={{ y: [0, 10, 0] }}
+					transition={{ duration: 2, repeat: Infinity }}
+				>
+					<span className='text-sm font-medium'>Scroll for more</span>
+					<Icon icon='lucide:chevron-down' width={20} height={20} />
+				</motion.div>
+			</section>
+		</>
 	);
 };
 
