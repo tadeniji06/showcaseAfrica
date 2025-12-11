@@ -126,14 +126,14 @@ const MagazineHero = () => {
 	const magazines: Magazine[] = [
 		{
 			volume: "Volume 1, Issue 1",
-			month: "October",
+			month: "November",
 			year: "2025",
 			pdfPath: "/showcase_africa_vol1_issue1.pdf",
 			imageSrc: saMag,
 		},
 		{
 			volume: "Volume 1, Issue 2",
-			month: "November",
+			month: "December",
 			year: "2025",
 			driveFileId: "12-Jzht8f8s5qbGqAh31pWNbu9EM2HKo7",
 			imageSrc: sav2,
