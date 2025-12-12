@@ -332,6 +332,12 @@ const PostClient = ({ post }: PostClientProps) => {
 				</motion.div>
 			)}
 
+			{post.photoCredit && (
+				<p className='text-sm text-gray-500 italic mt-2 text-center'>
+					Photo Credit: {post.photoCredit}
+				</p>
+			)}
+
 			{/* Main Content */}
 			<main className='container mx-auto px-6 lg:px-12 py-12'>
 				<div className='max-w-4xl mx-auto'>

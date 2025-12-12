@@ -17,16 +17,16 @@ export interface Category {
 export interface BlogPost {
 	_id: string;
 	title: string;
-	slug: {
-		current: string;
-	};
+	slug: { current: string };
 	author?: Author;
 	mainImage?: SanityImageSource;
 	categories?: Category[];
 	publishedAt: string;
 	body: any[];
 	estimatedReadingTime: number;
+	photoCredit?: string; // <--- add this
 }
+
 
 export const client = createClient({
 	projectId: "pf872mb3",
@@ -72,24 +72,25 @@ export const getBlogPost = async (
 	slug: string
 ): Promise<BlogPost | null> => {
 	const query = `*[_type == "post" && slug.current == $slug][0] {
+  _id,
+  title,
+  slug,
+  author->{
     _id,
-    title,
-    slug,
-    author->{
-      _id,
-      name,
-      image,
-      bio
-    },
-    mainImage,
-    categories[]->{
-      _id,
-      title
-    },
-    publishedAt,
-    body,
-    "estimatedReadingTime": round(length(pt::text(body)) / 5 / 180 )
-  }`;
+    name,
+    image,
+    bio
+  },
+  mainImage,
+  photoCredit,
+  categories[]->{
+    _id,
+    title
+  },
+  publishedAt,
+  body,
+  "estimatedReadingTime": round(length(pt::text(body)) / 5 / 180 )
+}`;
 
 	return await client.fetch(query, { slug });
 };
