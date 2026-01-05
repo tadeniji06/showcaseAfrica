@@ -22,9 +22,11 @@ import politics from "./politics.jpg";
 import sports from "./sports.jpg";
 import travel from "./travel.jpg";
 import sabanner from "./sabanner.jpg";
-import sav2 from './sav2.jpg';
+import sav2 from "./sav2.jpg";
+import v3 from "./v3.jpeg";
 export {
 	logo,
+	v3,
 	hero,
 	sav2,
 	saMag,

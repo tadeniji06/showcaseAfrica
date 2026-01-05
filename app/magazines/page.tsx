@@ -1,4 +1,4 @@
-import MagazineBody from "@/components/magazines/MagazineBody";
+// import MagazineBody from "@/components/magazines/MagazineBody";
 import MagazineHero from "@/components/magazines/MagazineHero";
 import type { Metadata } from "next";
 
