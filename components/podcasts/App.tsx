@@ -11,8 +11,8 @@ const youtubeVideos = [
 	{
 		id: "NF-9wOlyKBQ",
 		title:
-			"SPECIAL EDITION: Q&A on Sales With Dr. Damilola Olanrewaju | African Business Showcase",
-		description: `This special edition of the African Business Showcase features a full Q&A session with Dr. Damilola Olanrewaju, where we dive deep into the real issues surrounding sales in today’s African business landscape.
+			"SPECIAL EDITION: Q&A on Sales With Dr. Damilola Olanrewaju | Business Showcase",
+		description: `This special edition of the Business Showcase features a full Q&A session with Dr. Damilola Olanrewaju, where we dive deep into the real issues surrounding sales in today’s African business landscape.
 From handling rejection to building trust, structuring your sales process, managing clients, and understanding what truly drives conversion, Dr. Olanrewaju breaks everything down with clarity and experience.`,
 		thumbnail: `https://img.youtube.com/vi/NF-9wOlyKBQ/maxresdefault.jpg`,
 		duration: "55:21",
@@ -47,9 +47,9 @@ From handling rejection to building trust, structuring your sales process, manag
 	{
 		id: "Vn-HfUOdSaU",
 		title:
-			"Mrs. Ijeoma: Building a Brand as a Woman in Nigeria | The African Business Showcase Ep. 10",
+			"Mrs. Ijeoma: Building a Brand as a Woman in Nigeria | The Business Showcase Ep. 10",
 		description:
-			"In this inspiring episode of The African Business Showcase, we sit with Mrs. Ijeoma, the CEO of IGM Global Limited, as she shares her journey of building a thriving brand in Nigeria’s competitive business landscape.",
+			"In this inspiring episode of The Business Showcase, we sit with Mrs. Ijeoma, the CEO of IGM Global Limited, as she shares her journey of building a thriving brand in Nigeria’s competitive business landscape.",
 		thumbnail: `https://img.youtube.com/vi/Vn-HfUOdSaU/maxresdefault.jpg`,
 		duration: "42:15",
 		publishedDate: "October 2025",
@@ -67,9 +67,9 @@ From handling rejection to building trust, structuring your sales process, manag
 	{
 		id: "pDG_Ufh1bU0",
 		title:
-			"Showcase Africa Business Podcast Ep.1/Inside South Africa’s Economy & Market Opportunities",
+			"Business Showcase Podcast Ep.1/Inside South Africa’s Economy & Market Opportunities",
 		description:
-			"Showcase Africa Business Podcast Ep.1/Inside South Africa’s Economy & Market Opportunities",
+			"Business Showcase Podcast Ep.1/Inside South Africa’s Economy & Market Opportunities",
 		thumbnail: `https://img.youtube.com/vi/pDG_Ufh1bU0/maxresdefault.jpg`,
 		duration: "31:30",
 		publishedDate: "May 2025",
@@ -261,7 +261,7 @@ const PodcastBody = () => {
 							className='w-8 h-8 text-red-600'
 						/>
 						<h2 className='text-2xl md:text-3xl font-bold text-gray-900'>
-							Showcase Africa Episodes
+							Business Showcase Episodes
 						</h2>
 					</div>
 
@@ -363,7 +363,7 @@ const PodcastBody = () => {
 							className='inline-flex items-center gap-2 bg-red-600 text-white px-8 py-3 rounded-xl font-medium hover:bg-red-700 transition'
 						>
 							<Icon icon='mdi:youtube' className='w-5 h-5' />
-							Subscribe to ShowcaseAfrica TV
+							Subscribe to Business Showcase TV
 						</a>
 					</div>
 				</div>
@@ -410,7 +410,7 @@ const NewPodcast = () => {
 								Recent Episodes
 							</h2>
 							<p className='text-sm text-gray-600 mt-1'>
-								From ShowcaseAfrica TV
+								From Business Showcase TV
 							</p>
 						</div>
 					</div>

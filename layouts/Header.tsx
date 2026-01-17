@@ -70,15 +70,15 @@ const Header = () => {
 	return (
 		<header
 			ref={headerRef}
-			className='sticky top-0 z-50 bg-primary-red border-b border-gray-200 shadow-md'
+			className='sticky top-0 z-50 bg-white border-b border-gray-200 shadow-md'
 		>
 			<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
 				<nav className='flex items-center justify-between md:h-[120px] h-24'>
 					{/* Logo/Brand */}
 					<Link href={"/"}>
 						<Image
-							className='md:h-[90px] md:w-[200px] h-[70px] w-[150px]'
-							width={150}
+							className='md:h-[120px] md:w-[250px] h-[80px] w-[180px] object-cover'
+							// width={150}
 							alt='logo'
 							src={logo}
 						/>
@@ -99,12 +99,12 @@ const Header = () => {
 											// close any open dropdown (if user clicked a link in desktop while a dropdown was open)
 											setOpenDropdown(null);
 										}}
-										className='text-white hover:text-gray-300 font-medium transition-colors duration-200'
+										className='text-primary-red hover:text-light-red font-medium transition-colors duration-200'
 									>
 										{link.title}
 									</Link>
 								) : (
-									<span className='text-white font-medium'>
+									<span className='text-primary-red font-medium'>
 										{link.title}
 									</span>
 								)}
@@ -119,7 +119,7 @@ const Header = () => {
 											e.stopPropagation(); // avoid bubbling weirdness
 											toggleDropdown(link.title);
 										}}
-										className='ml-1 text-white hover:text-gray-300 transition-colors'
+										className='ml-1 text-primary-red hover:text-light-red transition-colors'
 									>
 										<Icon
 											icon={
@@ -160,19 +160,19 @@ const Header = () => {
 					{/* Desktop Action Buttons */}
 					<div className='hidden md:flex items-center gap-3 lg:gap-4'>
 						<button
-							className='p-2 hover:bg-white/10 rounded-lg transition-colors duration-200'
+							className='p-2 hover:bg-gray-100 rounded-lg transition-colors duration-200'
 							aria-label='Search'
 						>
 							<Icon
 								icon={"ic:baseline-search"}
-								className='text-white text-xl lg:text-2xl'
+								className='text-primary-red text-xl lg:text-2xl'
 							/>
 						</button>
 						<Link
 							target='_blank'
 							href='https://www.instagram.com/showcaseafrica_?igsh=MWZ1N2QzZzU5Z3JiNQ=='
 						>
-							<button className='cursor-pointer bg-white text-primary-red rounded-lg shadow-md px-3 py-2 lg:px-5 lg:py-3 text-sm lg:text-base font-medium hover:bg-gray-50 transition-colors duration-200'>
+							<button className='cursor-pointer bg-primary-red text-white rounded-lg shadow-md px-3 py-2 lg:px-5 lg:py-3 text-sm lg:text-base font-medium hover:bg-red-700 transition-colors duration-200'>
 								Get In Touch
 							</button>
 						</Link>
@@ -181,14 +181,14 @@ const Header = () => {
 					{/* Mobile menu button */}
 					<button
 						onClick={toggleMobileMenu}
-						className='md:hidden inline-flex items-center justify-center p-2 rounded-md hover:bg-white/10 transition-colors duration-200'
+						className='md:hidden inline-flex items-center justify-center p-2 rounded-md hover:bg-gray-100 transition-colors duration-200'
 						aria-expanded={isMobileMenuOpen}
 						aria-label='Toggle navigation menu'
 						type='button'
 					>
 						<Icon
 							icon={isMobileMenuOpen ? "mdi:close" : "mdi:menu"}
-							className='h-6 w-6 text-white'
+							className='h-6 w-6 text-primary-red'
 						/>
 					</button>
 				</nav>
@@ -201,7 +201,7 @@ const Header = () => {
 							: "max-h-0 opacity-0 invisible overflow-hidden"
 					}`}
 				>
-					<div className='px-2 pt-2 pb-4 space-y-1 bg-primary-red border-t border-white/20'>
+					<div className='px-2 pt-2 pb-4 space-y-1 bg-white border-t border-gray-200'>
 						{/* Mobile Navigation Links */}
 						{headerLinks.map((link) => (
 							<div key={link.title}>
@@ -214,7 +214,7 @@ const Header = () => {
 												e.stopPropagation();
 												toggleDropdown(link.title);
 											}}
-											className='flex justify-between items-center w-full px-3 py-3 text-base font-medium text-white hover:bg-white/10 rounded-md transition-colors duration-200'
+											className='flex justify-between items-center w-full px-3 py-3 text-base font-medium text-primary-red hover:bg-gray-50 rounded-md transition-colors duration-200'
 											aria-expanded={openDropdown === link.title}
 											aria-controls={`${link.title}-mobile-menu`}
 										>
@@ -225,7 +225,7 @@ const Header = () => {
 														? "mdi:chevron-up"
 														: "mdi:chevron-down"
 												}
-												className='text-white text-lg'
+												className='text-primary-red text-lg'
 											/>
 										</button>
 
@@ -240,7 +240,7 @@ const Header = () => {
 														key={item.title}
 														href={item.link}
 														onClick={closeMobileMenu}
-														className='block px-3 py-2 text-sm font-medium text-white/90 hover:bg-white/10 rounded-md transition-colors duration-200'
+														className='block px-3 py-2 text-sm font-medium text-primary-red/90 hover:bg-gray-50 rounded-md transition-colors duration-200'
 													>
 														{item.title}
 													</Link>
@@ -252,7 +252,7 @@ const Header = () => {
 									<Link
 										href={link.link}
 										onClick={closeMobileMenu}
-										className='block px-3 py-3 text-base font-medium text-white hover:bg-white/10 rounded-md transition-colors duration-200'
+										className='block px-3 py-3 text-base font-medium text-primary-red hover:bg-gray-50 rounded-md transition-colors duration-200'
 									>
 										{link.title}
 									</Link>
@@ -261,15 +261,15 @@ const Header = () => {
 						))}
 
 						{/* Mobile Action Buttons */}
-						<div className='pt-3 border-t border-white/20 mt-3'>
+						<div className='pt-3 border-t border-gray-200 mt-3'>
 							<div className='flex items-center gap-3 px-3'>
 								<button
-									className='flex-1 flex items-center justify-center gap-2 bg-white/10 text-white rounded-lg px-4 py-3 hover:bg-white/20 transition-colors duration-200'
+									className='flex-1 flex items-center justify-center gap-2 bg-gray-100 text-primary-red rounded-lg px-4 py-3 hover:bg-gray-200 transition-colors duration-200'
 									onClick={closeMobileMenu}
 								>
 									<Icon
 										icon={"ic:baseline-search"}
-										className='text-white text-lg'
+										className='text-primary-red text-lg'
 									/>
 									<span className='text-sm font-medium'>Search</span>
 								</button>
@@ -278,7 +278,7 @@ const Header = () => {
 									href='https://www.instagram.com/showcaseafrica_?igsh=MWZ1N2QzZzU5Z3JiNQ=='
 								>
 									<button
-										className='flex-1 bg-white text-primary-red rounded-lg px-4 py-3 text-sm font-medium hover:bg-gray-50 transition-colors duration-200'
+										className='flex-1 bg-primary-red text-white rounded-lg px-4 py-3 text-sm font-medium hover:bg-red-700 transition-colors duration-200'
 										onClick={closeMobileMenu}
 									>
 										Get In Touch

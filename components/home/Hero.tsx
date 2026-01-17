@@ -103,7 +103,7 @@ const Hero = () => {
 	if (loading) {
 		return (
 			<>
-				<HeroBanner />
+				{/* <HeroBanner /> */}
 				<section className='relative h-[80vh] bg-gradient-to-br from-gray-100 to-gray-200'>
 					<div className='absolute inset-0 flex items-center justify-center'>
 						<div className='animate-spin rounded-full h-16 w-16 border-b-4 border-primary-red' />
@@ -117,7 +117,7 @@ const Hero = () => {
 	if (posts.length === 0) {
 		return (
 			<>
-				<HeroBanner />
+				{/* <HeroBanner /> */}
 				<section className='relative h-[80vh] bg-gradient-to-br from-primary-red/10 to-primary-red/20 flex items-center justify-center'>
 					<div className='text-center'>
 						<h1 className='text-4xl md:text-6xl font-bold text-primary-red mb-4'>
@@ -141,7 +141,7 @@ const Hero = () => {
 	return (
 		<>
 			{/* Banner - Clean separation from hero */}
-			<HeroBanner />
+			{/* <HeroBanner /> */}
 
 			{/* Hero Section - Starts immediately after banner */}
 			<section className='relative h-[85vh] min-h-[600px] overflow-hidden bg-black'>

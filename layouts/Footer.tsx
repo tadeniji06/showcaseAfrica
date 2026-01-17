@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const Footer = () => {
 	return (
-		<div className='bg-primary-red text-white'>
+		<div className='bg-white text-primary-red'>
 			<div className='container mx-auto px-4 sm:px-6 lg:px-8 py-12'>
 				<footer className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12'>
 					{/* Brand Section */}
@@ -13,13 +13,13 @@ const Footer = () => {
 						<Link href='/' className='inline-block'>
 							<Image
 								src={logo}
-								alt='Showcase Africa Logo'
+								alt='Business Showcase Logo'
 								width={150}
 								height={50}
 								className='h-auto'
 							/>
 						</Link>
-						<p className='text-gray-200 text-sm leading-relaxed max-w-sm'>
+						<p className='text-gray-600 text-sm leading-relaxed max-w-sm'>
 							Bringing you authentic voices, compelling narratives,
 							and insightful analysis from across the African
 							continent and different industries.
@@ -34,7 +34,7 @@ const Footer = () => {
 								<Link
 									key={link.title}
 									href={link.link}
-									className='block text-gray-200 hover:text-white text-sm transition-colors duration-200 hover:underline'
+									className='block text-gray-600 hover:text-primary-red text-sm transition-colors duration-200 hover:underline'
 								>
 									{link.title}
 								</Link>
@@ -50,7 +50,7 @@ const Footer = () => {
 								<Link
 									key={category.title}
 									href={category.link}
-									className='block text-gray-200 hover:text-white text-sm transition-colors duration-200 hover:underline'
+									className='block text-gray-600 hover:text-primary-red text-sm transition-colors duration-200 hover:underline'
 								>
 									{category.title}
 								</Link>
@@ -65,7 +65,7 @@ const Footer = () => {
 							{regions.map((region) => (
 								<p
 									key={region.title}
-									className='text-gray-200 text-sm cursor-default'
+									className='text-gray-600 text-sm cursor-default'
 								>
 									{region.title}
 								</p>
@@ -76,12 +76,12 @@ const Footer = () => {
 			</div>
 
 			{/* Bottom Bar */}
-			<div className='border-t border-white/20'>
+			<div className='border-t border-gray-200'>
 				<div className='container mx-auto px-4 sm:px-6 lg:px-8 py-6'>
-					<div className='flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-200'>
+					<div className='flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-600'>
 						<p>
-							© {new Date().getFullYear()} Showcase Africa. All rights
-							reserved.
+							© {new Date().getFullYear()} Business Showcase. All
+							rights reserved.
 						</p>
 						<p>
 							Developed by{" "}
@@ -89,7 +89,7 @@ const Footer = () => {
 								href='https://tech360online.com'
 								target='_blank'
 								rel='noopener noreferrer'
-								className='text-white hover:underline font-medium transition-colors duration-200'
+								className='text-primary-red hover:underline font-medium transition-colors duration-200'
 							>
 								Btech360
 							</Link>
