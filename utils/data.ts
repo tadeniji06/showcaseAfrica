@@ -20,7 +20,7 @@ export const headerLinks = [
 		link: "/magazines",
 	},
 	{
-		title: "Business Showcase TV",
+		title: "Showcase Africa TV",
 		link: "/podcasts",
 	},
 

@@ -3,7 +3,7 @@ import MagazineHero from "@/components/magazines/MagazineHero";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-	title: "Magazines | Business Showcase",
+	title: "Magazines | Showcase Africa",
 	description:
 		"A magazine showcasing the best of Africa — culture, business, tech, lifestyle, and innovation stories from across the continent.",
 	keywords: [
@@ -14,18 +14,18 @@ export const metadata: Metadata = {
 		"african innovation",
 		"african business",
 	],
-	applicationName: "Business Showcase",
-	creator: "Business Showcase Team",
-	publisher: "Business Showcase",
+	applicationName: "Showcase Africa",
+	creator: "Showcase Africa Team",
+	publisher: "Showcase Africa",
 	alternates: {
-		canonical: "https://www.businessshowcaseonline.com/magazines",
+		canonical: "https://www.showcaseafricaonline.com/magazines",
 	},
 	openGraph: {
-		title: "Magazines | Business Showcase",
+		title: "Magazines | Showcase Africa",
 		description:
 			"Explore Africa’s stories, innovations, and culture in our monthly magazine editions.",
-		url: "https://www.businessshowcaseonline.com/magazines",
-		siteName: "Business Showcase",
+		url: "https://www.showcaseafricaonline.com/magazines",
+		siteName: "Showcase Africa",
 		type: "article",
 		locale: "en_US",
 		images: [
@@ -33,13 +33,13 @@ export const metadata: Metadata = {
 				url: "/icon.jpg",
 				width: 1200,
 				height: 630,
-				alt: "Business Showcase Magazine",
+				alt: "Showcase Africa Magazine",
 			},
 		],
 	},
 	twitter: {
 		card: "summary_large_image",
-		title: "Magazines | Business Showcase",
+		title: "Magazines | Showcase Africa",
 		description:
 			"A magazine showcasing the best of Africa — culture, innovation, and lifestyle.",
 		creator: "@Showcaseafrica_",

@@ -5,22 +5,22 @@ import Header from "@/layouts/Header";
 import ClarityScript from "@/components/Clarity";
 
 export const metadata: Metadata = {
-	title: "Business Showcase Magazine | African Media",
+	title: "Showcase Africa Magazine | African Media",
 	description: "A magazine showcasing the best of Africa",
 	icons: {
 		icon: "/icon.jpg",
 	},
 	openGraph: {
-		title: "Business Showcase Magazine | African Media",
+		title: "Showcase Africa Magazine | African Media",
 		description: "A magazine showcasing the best of Africa",
-		url: "https://www.businessshowcaseonline.com",
-		siteName: "Business Showcase Magazine",
+		url: "https://www.showcaseafricaonline.com",
+		siteName: "Showcase Africa Magazine",
 		images: [
 			{
 				url: "/icon.jpg",
 				width: 1200,
 				height: 630,
-				alt: "Business Showcase Magazine Cover",
+				alt: "Showcase Africa Magazine Cover",
 			},
 		],
 		type: "website",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 	},
 	twitter: {
 		card: "summary_large_image",
-		title: "Business Showcase Magazine | African Media",
+		title: "Showcase Africa Magazine | African Media",
 		description: "A magazine showcasing the best of Africa",
 		images: ["/icon.jpg"],
 		site: "@tade_niji06",

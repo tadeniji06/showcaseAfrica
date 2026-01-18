@@ -8,41 +8,41 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	// Create sitemap entries for blog posts
 	const blogEntries: MetadataRoute.Sitemap = blogPosts.map(
 		(post: any) => ({
-			url: `https://www.businessshowcaseonline.com/posts/${post.slug.current}`,
+			url: `https://www.showcaseafricaonline.com/posts/${post.slug.current}`,
 			lastModified: new Date(post.publishedAt),
 			changeFrequency: "monthly" as const,
 			priority: 0.6,
-		})
+		}),
 	);
 
 	// Static pages
 	const staticPages: MetadataRoute.Sitemap = [
 		{
-			url: "https://www.businessshowcaseonline.com",
+			url: "https://www.showcaseafricaonline.com",
 			lastModified: new Date(),
 			changeFrequency: "yearly",
 			priority: 1,
 		},
 		{
-			url: "https://www.businessshowcaseonline.com/about",
+			url: "https://www.showcaseafricaonline.com/about",
 			lastModified: new Date(),
 			changeFrequency: "monthly",
 			priority: 0.8,
 		},
 		{
-			url: "https://www.businessshowcaseonline.com/podcasts",
+			url: "https://www.showcaseafricaonline.com/podcasts",
 			lastModified: new Date(),
 			changeFrequency: "monthly",
 			priority: 0.8,
 		},
 		{
-			url: "https://www.businessshowcaseonline.com/magazines",
+			url: "https://www.showcaseafricaonline.com/magazines",
 			lastModified: new Date(),
 			changeFrequency: "weekly",
 			priority: 0.9,
 		},
 		{
-			url: "https://www.businessshowcaseonline.com/posts",
+			url: "https://www.showcaseafricaonline.com/posts",
 			lastModified: new Date(),
 			changeFrequency: "weekly",
 			priority: 0.7,
