@@ -6,7 +6,8 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Icon } from "@iconify/react";
 import { useEffect, useState } from "react";
-import HeroBanner from "../HeroBanner";
+import YouTubeBanner from "../YouTubeBanner";
+// import HeroBanner from "../HeroBanner";
 
 const Hero = () => {
 	const [posts, setPosts] = useState<BlogPost[]>([]);
@@ -59,10 +60,10 @@ const Hero = () => {
 				(block) =>
 					block.children
 						?.filter(
-							(child: any) => child._type === "span" && child.text
+							(child: any) => child._type === "span" && child.text,
 						)
 						.map((child: any) => child.text)
-						.join("") || ""
+						.join("") || "",
 			)
 			.join(" ")
 			.trim();
@@ -93,7 +94,7 @@ const Hero = () => {
 
 	const prevSlide = () => {
 		setCurrentIndex(
-			(prev) => (prev - 1 + posts.length) % posts.length
+			(prev) => (prev - 1 + posts.length) % posts.length,
 		);
 		setIsAutoPlaying(false);
 		setTimeout(() => setIsAutoPlaying(true), 10000);
@@ -140,6 +141,9 @@ const Hero = () => {
 	// MAIN HERO
 	return (
 		<>
+			{/* YouTube Subscription Banner */}
+			<YouTubeBanner />
+
 			{/* Banner - Clean separation from hero */}
 			{/* <HeroBanner /> */}
 
