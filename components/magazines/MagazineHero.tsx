@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { saMag, sav2, v3 } from "@/assets";
+import { inew, saMag, sav2, v3 } from "@/assets";
 import Image, { StaticImageData } from "next/image";
 import NewsLetterSub from "../others/NewsLetterSub";
 
@@ -144,6 +144,13 @@ const MagazineHero = () => {
 			year: "2026",
 			pdfPath: "/showcase_africa_vol1_issue3.pdf",
 			imageSrc: v3,
+		},
+		{
+			volume: "Volume 2, Issue 1",
+			month: "February",
+			year: "2026",
+			pdfPath: "/showcaseafrica_issue4.pdf",
+			imageSrc: inew,
 		}
 	];
 

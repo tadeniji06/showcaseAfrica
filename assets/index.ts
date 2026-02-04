@@ -24,9 +24,11 @@ import travel from "./travel.jpg";
 import sabanner from "./sabanner.jpg";
 import sav2 from "./sav2.jpg";
 import v3 from "./v3.jpeg";
+import inew from "./inew.jpeg";
 export {
 	logo,
 	v3,
+	inew,
 	hero,
 	sav2,
 	saMag,
