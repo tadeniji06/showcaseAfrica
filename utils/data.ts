@@ -4,7 +4,7 @@ export const headerLinks = [
 		link: "/",
 	},
 	{
-		title: "Business",
+		title: "Travel",
 		link: "/posts",
 	},
 	{
@@ -20,7 +20,7 @@ export const headerLinks = [
 		link: "/magazines",
 	},
 	{
-		title: "Business Showcase TV",
+		title: "B360 TV",
 		link: "/podcasts",
 	},
 

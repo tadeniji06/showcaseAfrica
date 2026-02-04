@@ -2,7 +2,7 @@ import App from "@/components/podcasts/App";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-	title: "Podcasts | Business Showcase",
+	title: "Podcasts | Showcase Africa",
 	description:
 		"A podcast showcasing the best of Africa — culture, business, tech, lifestyle, and innovation stories from across the continent.",
 	keywords: [
@@ -13,18 +13,18 @@ export const metadata: Metadata = {
 		"african innovation",
 		"african business",
 	],
-	applicationName: "Business Showcase",
-	creator: "Business Showcase Team",
-	publisher: "Business Showcase",
+	applicationName: "Showcase Africa",
+	creator: "Showcase Africa Team",
+	publisher: "Showcase Africa",
 	alternates: {
-		canonical: "https://www.businessshowcaseonline.com/podcasts",
+		canonical: "https://www.showcaseafricaonline.com/podcasts",
 	},
 	openGraph: {
-		title: "Podcasts | Business Showcase",
+		title: "Podcasts | Showcase Africa",
 		description:
 			"Explore Africa’s stories, innovations, and culture in our monthly podcast editions.",
-		url: "https://www.businessshowcaseonline.com/podcasts",
-		siteName: "Business Showcase",
+		url: "https://www.showcaseafricaonline.com/podcasts",
+		siteName: "Showcase Africa",
 		type: "article",
 		locale: "en_US",
 		images: [
@@ -32,13 +32,13 @@ export const metadata: Metadata = {
 				url: "/icon.jpg",
 				width: 1200,
 				height: 630,
-				alt: "Business Showcase Podcast",
+				alt: "Showcase Africa Podcast",
 			},
 		],
 	},
 	twitter: {
 		card: "summary_large_image",
-		title: "Podcasts | Business Showcase",
+		title: "Podcasts | Showcase Africa",
 		description:
 			"A podcast showcasing the best of Africa — culture, innovation, and lifestyle.",
 		creator: "@Showcaseafrica_",

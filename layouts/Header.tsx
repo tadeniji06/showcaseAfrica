@@ -70,15 +70,15 @@ const Header = () => {
 	return (
 		<header
 			ref={headerRef}
-			className='sticky top-0 z-50 bg-white border-b border-gray-200 shadow-md'
+			className='sticky top-0 z-50 bg-primary-red border-b border-red-800 shadow-md'
 		>
 			<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
 				<nav className='flex items-center justify-between md:h-[120px] h-24'>
 					{/* Logo/Brand */}
 					<Link href={"/"}>
 						<Image
-							className='md:h-[120px] md:w-[250px] h-[80px] w-[180px] object-cover'
-							// width={150}
+							className='md:h-[100px] md:w-[250px] h-[80px] w-[180px]'
+							width={150}
 							alt='logo'
 							src={logo}
 						/>
@@ -99,12 +99,12 @@ const Header = () => {
 											// close any open dropdown (if user clicked a link in desktop while a dropdown was open)
 											setOpenDropdown(null);
 										}}
-										className='text-primary-red hover:text-light-red font-medium transition-colors duration-200'
+										className='text-white hover:text-gray-200 font-medium transition-colors duration-200'
 									>
 										{link.title}
 									</Link>
 								) : (
-									<span className='text-primary-red font-medium'>
+									<span className='text-white font-medium'>
 										{link.title}
 									</span>
 								)}
@@ -119,7 +119,7 @@ const Header = () => {
 											e.stopPropagation(); // avoid bubbling weirdness
 											toggleDropdown(link.title);
 										}}
-										className='ml-1 text-primary-red hover:text-light-red transition-colors'
+										className='ml-1 text-white hover:text-gray-200 transition-colors'
 									>
 										<Icon
 											icon={
@@ -165,14 +165,14 @@ const Header = () => {
 						>
 							<Icon
 								icon={"ic:baseline-search"}
-								className='text-primary-red text-xl lg:text-2xl'
+								className='text-white text-xl lg:text-2xl'
 							/>
 						</button>
 						<Link
 							target='_blank'
 							href='https://www.instagram.com/showcaseafrica_?igsh=MWZ1N2QzZzU5Z3JiNQ=='
 						>
-							<button className='cursor-pointer bg-primary-red text-white rounded-lg shadow-md px-3 py-2 lg:px-5 lg:py-3 text-sm lg:text-base font-medium hover:bg-red-700 transition-colors duration-200'>
+							<button className='cursor-pointer bg-white text-primary-red rounded-lg shadow-md px-3 py-2 lg:px-5 lg:py-3 text-sm lg:text-base font-medium hover:bg-gray-100 transition-colors duration-200'>
 								Get In Touch
 							</button>
 						</Link>
@@ -188,7 +188,7 @@ const Header = () => {
 					>
 						<Icon
 							icon={isMobileMenuOpen ? "mdi:close" : "mdi:menu"}
-							className='h-6 w-6 text-primary-red'
+							className='h-6 w-6 text-white'
 						/>
 					</button>
 				</nav>

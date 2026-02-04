@@ -19,15 +19,14 @@ const OurStory = () => {
 					{/* Content */}
 					<div className='space-y-5 text-lg text-gray-700 leading-relaxed'>
 						<p>
-							Founded in 2025,{" "}
-							<strong>Business Showcase Media</strong> emerged from a
-							simple but powerful belief: Africa&apos;s voices deserve
-							to be heard by Africans, for the world to understand and
-							appreciate. What started as a small team of passionate
-							journalists and content creators in Lagos has grown into
-							a continental network of storytellers, podcasters, and
-							digital innovators committed to changing the narrative
-							about Africa.
+							Founded in 2025, <strong>Showcase Africa Media</strong>{" "}
+							emerged from a simple but powerful belief: Africa&apos;s
+							voices deserve to be heard by Africans, for the world to
+							understand and appreciate. What started as a small team
+							of passionate journalists and content creators in Lagos
+							has grown into a continental network of storytellers,
+							podcasters, and digital innovators committed to changing
+							the narrative about Africa.
 						</p>
 						<p>
 							We recognized that mainstream media often portrayed
