@@ -1,4 +1,8 @@
-import { headerLinks, categories, regions } from "@/utils/data";
+import {
+	headerLinks,
+	showcaseCategories,
+	regions,
+} from "@/utils/data";
 import { logo } from "@/assets";
 import Image from "next/image";
 import Link from "next/link";
@@ -46,10 +50,10 @@ const Footer = () => {
 					<div className='space-y-4'>
 						<h3 className='font-bold text-lg'>Sections</h3>
 						<nav className='space-y-3'>
-							{categories.map((category) => (
+							{showcaseCategories.map((category) => (
 								<Link
 									key={category.title}
-									href={category.link}
+									href={`/category/${category.slug}`}
 									className='block text-white hover:text-gray-200 text-sm transition-colors duration-200 hover:underline'
 								>
 									{category.title}

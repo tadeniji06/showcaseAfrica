@@ -27,7 +27,6 @@ export interface BlogPost {
 	photoCredit?: string; // <--- add this
 }
 
-
 export const client = createClient({
 	projectId: "pf872mb3",
 	dataset: "production",
@@ -42,7 +41,7 @@ export const urlFor = (source: SanityImageSource) =>
 // Query functions with proper typing
 export const getBlogPosts = async (
 	limit = 10,
-	offset = 0
+	offset = 0,
 ): Promise<BlogPost[]> => {
 	const query = `*[_type == "post"] | order(publishedAt desc) [${offset}...${
 		offset + limit
@@ -69,7 +68,7 @@ export const getBlogPosts = async (
 };
 
 export const getBlogPost = async (
-	slug: string
+	slug: string,
 ): Promise<BlogPost | null> => {
 	const query = `*[_type == "post" && slug.current == $slug][0] {
   _id,
@@ -98,7 +97,7 @@ export const getBlogPost = async (
 export const getRelatedPosts = async (
 	categories: Category[],
 	currentPostId: string,
-	limit = 3
+	limit = 3,
 ): Promise<BlogPost[]> => {
 	const query = `*[_type == "post" && _id != $currentPostId && count((categories[]._ref)[@ in $categories]) > 0] | order(publishedAt desc) [0...${limit}] {
     _id,
@@ -121,7 +120,7 @@ export const getRelatedPosts = async (
 };
 
 export const searchPosts = async (
-	searchTerm: string
+	searchTerm: string,
 ): Promise<BlogPost[]> => {
 	const query = `*[_type == "post" && (title match $searchTerm || pt::text(body) match $searchTerm)] | order(publishedAt desc) {
     _id,
@@ -138,6 +137,31 @@ export const searchPosts = async (
   }`;
 
 	return await client.fetch(query, { searchTerm: `*${searchTerm}*` });
+};
+
+export const getPostsByCategory = async (
+	categoryTitle: string,
+): Promise<BlogPost[]> => {
+	const query = `*[_type == "post" && count((categories[]->title)[@ == $categoryTitle]) > 0] | order(publishedAt desc) {
+    _id,
+    title,
+    slug,
+    author->{
+      _id,
+      name,
+      image
+    },
+    mainImage,
+    categories[]->{
+      _id,
+      title
+    },
+    publishedAt,
+    body[0...3],
+    "estimatedReadingTime": round(length(pt::text(body)) / 5 / 180 )
+  }`;
+
+	return await client.fetch(query, { categoryTitle });
 };
 
 export const getCategories = async (): Promise<Category[]> => {

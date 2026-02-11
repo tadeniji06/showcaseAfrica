@@ -4,16 +4,28 @@ export const headerLinks = [
 		link: "/",
 	},
 	{
-		title: "Travel",
-		link: "/posts",
+		title: "Business",
+		link: "/category/business-economy",
 	},
 	{
 		title: "Culture",
-		link: "/posts",
+		link: "/category/culture",
 	},
 	{
 		title: "Entertainment",
-		link: "/posts",
+		link: "/category/entertainment",
+	},
+	{
+		title: "Politics",
+		link: "/category/politics-policies",
+	},
+	{
+		title: "Sports",
+		link: "/category/sports",
+	},
+	{
+		title: "Travel",
+		link: "/category/travel",
 	},
 	{
 		title: "Magazines",
@@ -23,33 +35,84 @@ export const headerLinks = [
 		title: "B360 TV",
 		link: "/podcasts",
 	},
-
 	{
 		title: "About",
 		link: "/about",
 	},
 ];
 
-export const categories = [
+export const showcaseCategories = [
 	{
 		title: "Business & Economy",
-		link: "/",
+		cmsTitle: "Business & Economy",
+		slug: "business-economy",
+		icon: "mdi:finance",
+		description:
+			"Insights into Africa's economic landscape, markets, and business innovations.",
+		color: "bg-blue-600",
+		gradient: "from-blue-600 to-blue-900",
+		textColor: "text-blue-600",
+		borderColor: "border-blue-200",
+	},
+	{
+		title: "Culture",
+		cmsTitle: "Culture",
+		slug: "culture",
+		icon: "mdi:palette",
+		description:
+			"Celebrating African heritage, contemporary art, music, and cultural expression.",
+		color: "bg-purple-600",
+		gradient: "from-purple-600 to-purple-900",
+		textColor: "text-purple-600",
+		borderColor: "border-purple-200",
+	},
+	{
+		title: "Entertainment",
+		cmsTitle: "Entertainment",
+		slug: "entertainment",
+		icon: "mdi:movie-open-star-outline",
+		description:
+			"The latest from Nollywood, Afrobeats, and the continent's creative industries.",
+		color: "bg-red-600",
+		gradient: "from-red-600 to-red-900",
+		textColor: "text-red-600",
+		borderColor: "border-red-200",
+	},
+	{
+		title: "Politics & Policies",
+		cmsTitle: "Politics & Policies",
+		slug: "politics-policies",
+		icon: "mdi:bank-outline",
+		description:
+			"Analysis of policy, democracy, and governance shaping the African continent.",
+		color: "bg-green-600",
+		gradient: "from-green-600 to-green-900",
+		textColor: "text-green-600",
+		borderColor: "border-green-200",
+	},
+	{
+		title: "Sports",
+		cmsTitle: "Sports",
+		slug: "sports",
+		icon: "mdi:trophy-outline",
+		description:
+			"Covering African excellence in sports, from football leagues to Olympic champions.",
+		color: "bg-orange-600",
+		gradient: "from-orange-600 to-orange-900",
+		textColor: "text-orange-600",
+		borderColor: "border-orange-200",
 	},
 	{
 		title: "Travel",
-		link: "/",
-	},
-	{
-		title: "Lifestyle",
-		link: "/",
-	},
-	{
-		title: "Politics",
-		link: "/",
-	},
-	{
-		title: "Sport",
-		link: "/",
+		cmsTitle: "Travel",
+		slug: "travel",
+		icon: "mdi:airplane-takeoff",
+		description:
+			"Exploring destinations, hospitality, and the beauty of African travel.",
+		color: "bg-cyan-600",
+		gradient: "from-cyan-600 to-cyan-900",
+		textColor: "text-cyan-600",
+		borderColor: "border-cyan-200",
 	},
 ];
 
