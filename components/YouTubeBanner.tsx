@@ -48,14 +48,14 @@ const YouTubeBanner = () => {
 							className='pointer-events-auto relative'
 						>
 							{/* Main Banner Container */}
-							<div className='relative overflow-hidden rounded-2xl shadow-2xl border-2 border-red-600'>
+							<div className='relative overflow-hidden rounded-2xl shadow-2xl border-2 border-green-600'>
 								{/* Animated Background Gradient - Black to Red */}
 								<motion.div
 									animate={{
 										background: [
-											"linear-gradient(135deg, #000000 0%, #1a0000 25%, #FF0000 50%, #1a0000 75%, #000000 100%)",
-											"linear-gradient(135deg, #1a0000 0%, #FF0000 25%, #000000 50%, #FF0000 75%, #1a0000 100%)",
-											"linear-gradient(135deg, #000000 0%, #1a0000 25%, #FF0000 50%, #1a0000 75%, #000000 100%)",
+											"linear-gradient(135deg, #000000 0%, #052e16 25%, #22c55e 50%, #052e16 75%, #000000 100%)",
+											"linear-gradient(135deg, #052e16 0%, #22c55e 25%, #000000 50%, #22c55e 75%, #052e16 100%)",
+											"linear-gradient(135deg, #000000 0%, #052e16 25%, #22c55e 50%, #052e16 75%, #000000 100%)",
 										],
 									}}
 									transition={{
@@ -67,7 +67,7 @@ const YouTubeBanner = () => {
 								/>
 
 								{/* Red Accent Overlay */}
-								<div className='absolute inset-0 bg-gradient-to-r from-red-600/20 via-transparent to-red-600/20' />
+								<div className='absolute inset-0 bg-gradient-to-r from-green-600/20 via-transparent to-green-600/20' />
 
 								{/* Animated Shine Effect - White */}
 								<motion.div
@@ -102,8 +102,8 @@ const YouTubeBanner = () => {
 										>
 											<div className='bg-white rounded-full p-3 shadow-lg'>
 												<Icon
-													icon='mdi:youtube'
-													className='text-red-600'
+													icon='ic:baseline-whatsapp'
+													className='text-green-600'
 													width={32}
 													height={32}
 												/>
@@ -123,12 +123,12 @@ const YouTubeBanner = () => {
 												}}
 												className='text-white font-bold text-lg md:text-xl leading-tight'
 											>
-												🎬 Join Our Community on YouTube!
+												📱 Join Our Community on WhatsApp!
 											</motion.h3>
 											<p className='text-white/90 text-sm md:text-base hidden sm:block'>
-												Subscribe to{" "}
+												Join{" "}
 												<span className='font-semibold'>B360Tv</span>{" "}
-												for exclusive content
+												for exclusive updates
 											</p>
 										</div>
 									</div>
@@ -137,7 +137,7 @@ const YouTubeBanner = () => {
 									<div className='flex items-center gap-3 flex-shrink-0'>
 										{/* Subscribe Button */}
 										<Link
-											href='https://www.youtube.com/@B360Tv?sub_confirmation=1'
+											href='https://chat.whatsapp.com/EBq7sxKssdgCc7d4nedfI6?mode=gi_t'
 											target='_blank'
 											rel='noopener noreferrer'
 										>
@@ -161,17 +161,17 @@ const YouTubeBanner = () => {
 														ease: "easeInOut",
 													},
 												}}
-												className='bg-white text-red-600 px-6 py-3 rounded-full font-bold text-sm md:text-base shadow-lg hover:bg-gray-100 transition-colors flex items-center gap-2'
+												className='bg-white text-green-600 px-6 py-3 rounded-full font-bold text-sm md:text-base shadow-lg hover:bg-gray-100 transition-colors flex items-center gap-2'
 											>
 												<Icon
-													icon='mdi:youtube-subscription'
+													icon='ic:baseline-whatsapp'
 													width={20}
 													height={20}
 												/>
 												<span className='hidden sm:inline'>
-													Subscribe Now
+													Join Channel
 												</span>
-												<span className='sm:hidden'>Subscribe</span>
+												<span className='sm:hidden'>Join</span>
 											</motion.button>
 										</Link>
 
@@ -219,7 +219,7 @@ const YouTubeBanner = () => {
 											ease: "easeOut",
 										}}
 										className={`absolute bottom-0 w-2 h-2 rounded-full ${
-											i % 2 === 0 ? "bg-red-500" : "bg-white"
+											i % 2 === 0 ? "bg-green-500" : "bg-white"
 										}`}
 										style={{
 											left: `${10 + i * 11}%`,
