@@ -10,6 +10,13 @@ const YouTubeBanner = () => {
 	const [hasAnimated, setHasAnimated] = useState(false);
 
 	useEffect(() => {
+		// Check if banner was previously closed
+		const isClosed = sessionStorage.getItem("whatsapp-banner-closed");
+		if (isClosed) {
+			setIsVisible(false);
+			return;
+		}
+
 		// Show banner after a brief delay for dramatic effect
 		const timer = setTimeout(() => {
 			setHasAnimated(true);
@@ -17,6 +24,11 @@ const YouTubeBanner = () => {
 
 		return () => clearTimeout(timer);
 	}, []);
+
+	const handleClose = () => {
+		setIsVisible(false);
+		sessionStorage.setItem("whatsapp-banner-closed", "true");
+	};
 
 	if (!isVisible) return null;
 
@@ -48,14 +60,14 @@ const YouTubeBanner = () => {
 							className='pointer-events-auto relative'
 						>
 							{/* Main Banner Container */}
-							<div className='relative overflow-hidden rounded-2xl shadow-2xl border-2 border-green-600'>
+							<div className='relative overflow-hidden rounded-2xl shadow-2xl border-2 border-red-600'>
 								{/* Animated Background Gradient - Black to Red */}
 								<motion.div
 									animate={{
 										background: [
-											"linear-gradient(135deg, #000000 0%, #052e16 25%, #22c55e 50%, #052e16 75%, #000000 100%)",
-											"linear-gradient(135deg, #052e16 0%, #22c55e 25%, #000000 50%, #22c55e 75%, #052e16 100%)",
-											"linear-gradient(135deg, #000000 0%, #052e16 25%, #22c55e 50%, #052e16 75%, #000000 100%)",
+											"linear-gradient(135deg, #000000 0%, #1a0000 25%, #990100 50%, #1a0000 75%, #000000 100%)",
+											"linear-gradient(135deg, #1a0000 0%, #990100 25%, #000000 50%, #990100 75%, #1a0000 100%)",
+											"linear-gradient(135deg, #000000 0%, #1a0000 25%, #990100 50%, #1a0000 75%, #000000 100%)",
 										],
 									}}
 									transition={{
@@ -67,7 +79,7 @@ const YouTubeBanner = () => {
 								/>
 
 								{/* Red Accent Overlay */}
-								<div className='absolute inset-0 bg-gradient-to-r from-green-600/20 via-transparent to-green-600/20' />
+								<div className='absolute inset-0 bg-gradient-to-r from-red-600/20 via-transparent to-red-600/20' />
 
 								{/* Animated Shine Effect - White */}
 								<motion.div
@@ -103,7 +115,7 @@ const YouTubeBanner = () => {
 											<div className='bg-white rounded-full p-3 shadow-lg'>
 												<Icon
 													icon='ic:baseline-whatsapp'
-													className='text-green-600'
+													className='text-red-600'
 													width={32}
 													height={32}
 												/>
@@ -161,7 +173,7 @@ const YouTubeBanner = () => {
 														ease: "easeInOut",
 													},
 												}}
-												className='bg-white text-green-600 px-6 py-3 rounded-full font-bold text-sm md:text-base shadow-lg hover:bg-gray-100 transition-colors flex items-center gap-2'
+												className='bg-white text-red-600 px-6 py-3 rounded-full font-bold text-sm md:text-base shadow-lg hover:bg-gray-100 transition-colors flex items-center gap-2'
 											>
 												<Icon
 													icon='ic:baseline-whatsapp'
@@ -179,7 +191,7 @@ const YouTubeBanner = () => {
 										<motion.button
 											whileHover={{ scale: 1.1, rotate: 90 }}
 											whileTap={{ scale: 0.9 }}
-											onClick={() => setIsVisible(false)}
+											onClick={handleClose}
 											className='bg-white/20 hover:bg-white/30 text-white p-2 rounded-full backdrop-blur-sm transition-colors'
 											aria-label='Close banner'
 										>
@@ -219,7 +231,7 @@ const YouTubeBanner = () => {
 											ease: "easeOut",
 										}}
 										className={`absolute bottom-0 w-2 h-2 rounded-full ${
-											i % 2 === 0 ? "bg-green-500" : "bg-white"
+											i % 2 === 0 ? "bg-red-500" : "bg-white"
 										}`}
 										style={{
 											left: `${10 + i * 11}%`,

@@ -4,7 +4,7 @@ export const headerLinks = [
 		link: "/",
 	},
 	{
-		title: "Business",
+		title: "Hospitality",
 		link: "/category/business-economy",
 	},
 	{
@@ -15,14 +15,14 @@ export const headerLinks = [
 		title: "Entertainment",
 		link: "/category/entertainment",
 	},
-	{
-		title: "Politics",
-		link: "/category/politics-policies",
-	},
-	{
-		title: "Sports",
-		link: "/category/sports",
-	},
+	// {
+	// 	title: "Politics",
+	// 	link: "/category/politics-policies",
+	// },
+	// {
+	// 	title: "Sports",
+	// 	link: "/category/sports",
+	// },
 	{
 		title: "Travel",
 		link: "/category/travel",
