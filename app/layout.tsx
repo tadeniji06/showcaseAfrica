@@ -3,6 +3,7 @@ import "./globals.css";
 import Footer from "@/layouts/Footer";
 import Header from "@/layouts/Header";
 import ClarityScript from "@/components/Clarity";
+import AnalyticsScript from "@/components/Analytics";
 
 export const metadata: Metadata = {
 	title: "Showcase Africa Magazine | African Media",
@@ -47,6 +48,7 @@ export default function RootLayout({
 				{children}
 				<Footer />
 				<ClarityScript />
+				<AnalyticsScript />
 			</body>
 		</html>
 	);
