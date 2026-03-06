@@ -3,6 +3,10 @@ export const headerLinks = [
 		title: "Home",
 		link: "/",
 	},
+		{
+		title: "News",
+		link: "/news",
+	},
 	{
 		title: "Hospitality",
 		link: "/category/business-economy",
@@ -19,10 +23,7 @@ export const headerLinks = [
 	// 	title: "Politics",
 	// 	link: "/category/politics-policies",
 	// },
-	// {
-	// 	title: "Sports",
-	// 	link: "/category/sports",
-	// },
+
 	{
 		title: "Travel",
 		link: "/category/travel",
